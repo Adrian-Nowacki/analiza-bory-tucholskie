@@ -14,9 +14,10 @@ var mapbox = L.tileLayer('https://api.mapbox.com/styles/v1/adryanque/cl3d4aqvh00
     attribution: "© <a href='https://www.mapbox.com/about/maps/'>Mapbox</a> © <a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a> <strong><a href='https://www.mapbox.com/map-feedback/' target='_blank'>Improve this map</a></strong>"
 }).addTo(map);
 
+var wms_service = "http://localhost:8080/geoserver/wms"
+var sql_text = ""
 
-
-var nadlesnictwa = L.tileLayer.wms("http://localhost:8080/geoserver/wms", {
+var nadlesnictwa = L.tileLayer.wms(wms_service, {
 layers: 'nadlesnictwa',
 format: 'image/png',
 zIndex: 4,
@@ -24,7 +25,7 @@ transparent: true,
 opacity: 1
 })
 
-var bory_tucholskie = L.tileLayer.wms("http://localhost:8080/geoserver/wms", {
+var bory_tucholskie = L.tileLayer.wms(wms_service, {
 layers: 'bory_tucholskie',
 format: 'image/png',
 zIndex: 4,
@@ -32,13 +33,18 @@ transparent: true,
 opacity: 1
 })
 
-var wycinki = L.tileLayer.wms("http://localhost:8080/geoserver/wms", {
-layers: 'poligonizowane',
-format: 'image/png',
-zIndex: 4,
-transparent: true,
-opacity: 1
-})
+
+    var wycinki = L.tileLayer.wms(wms_service, {
+    layers: 'wycinki',
+    format: 'image/png',
+    zIndex: 4,
+    transparent: true,
+    opacity: 1
+    }).addTo(map);
+
+
+
+
 
 var baseMaps = {
     "OpenStreetMap": openstreetmap,
@@ -68,11 +74,15 @@ function showSliderValue() {
 rangeSlider.addEventListener("input", info, false);
 
 function info(){
-    if (rangeSlider.value == '2018'){
-        bory_tucholskie.addTo(map);
+    if (rangeSlider.value == '2002'){
+        wycinki.setParams({CQL_FILTER:"DN=" + rangeSlider.value});
     }
-    else if (rangeSlider.value == '2005'){
-        wycinki.addTo(map);
+    else if (rangeSlider.value == '2003'){
+        
     }
-
+load(sql_text);
 }
+
+/*var admin = L.geoJson(lossyear, {color: 'blue', fillOpacity: 0.1, weight: 2
+});*/
+
