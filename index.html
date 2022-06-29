@@ -1,30 +1,41 @@
 <meta charset = "utf-8">
 <html lang = "pl">
 <head>
-<meta charset = "utf-8"/>
-<meta name = "viewport" content="width=device-width, initial-scale=0.6">
-<meta name = "description" content = "O tej porze kazdy wypic moze"/>
-<meta name = "keywords" content = "jakby, nie było, jest bardzo, miło"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-<title>Analiza Borów Tucholskich</title>
+    <meta charset = "utf-8"/>
+    <meta name = "viewport" content="width=device-width, initial-scale=0.6">
+    <meta name = "description" content = "O tej porze kazdy wypic moze"/>
+    <meta name = "keywords" content = "jakby, nie było, jest bardzo, miło"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <title>Analiza Borów Tucholskich</title>
 
-<link rel="stylesheet" type="text/css" href="style.css">
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css"
-integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ=="
-crossorigin=""/>
-<!-- Make sure you put this AFTER Leaflet's CSS -->
-<script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js"
-integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ=="
-crossorigin="">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-ajax/2.1.0/leaflet.ajax.js"></script>
-</script>
-
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css"
+    integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ=="
+    crossorigin=""/>
+    <!-- Make sure you put this AFTER Leaflet's CSS -->
+    <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js"
+    integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ=="
+    crossorigin=""></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-ajax/2.1.0/leaflet.ajax.js"></script>
 </head>
 <body>
     <div id = "map"></div>
 
-    <div id = "title">Analiza Borów Tucholskich</div> <!--dsuyfg-->
+    <div id = "title">Analiza Borów Tucholskich</div> 
 
+    <div class="container">
+  
+      <div class="range-slider">
+        <span id="rs-bullet" class="rs-label">0</span>
+        <input id="rs-range-line" class="rs-range" type="range" value="2001" min="2001" max="2020" step="1">
+        
+      </div>
+      
+      <div class="box-minmax">
+        <span>2001</span><span>2020</span>
+      </div>
+      
+    </div>
 
     <script src="script.js"></script>
 </body>

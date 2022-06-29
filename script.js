@@ -14,6 +14,23 @@ var mapbox = L.tileLayer('https://api.mapbox.com/styles/v1/adryanque/cl3d4aqvh00
     attribution: "© <a href='https://www.mapbox.com/about/maps/'>Mapbox</a> © <a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a> <strong><a href='https://www.mapbox.com/map-feedback/' target='_blank'>Improve this map</a></strong>"
 }).addTo(map);
 
+
+
+
+var rangeSlider = document.getElementById("rs-range-line");
+var rangeBullet = document.getElementById("rs-bullet");
+
+rangeSlider.addEventListener("input", showSliderValue, false);
+
+function showSliderValue() {
+  rangeBullet.innerHTML = rangeSlider.value;
+  var bulletPosition = ((rangeSlider.value - 2001) /(rangeSlider.max - 1820));
+  rangeBullet.style.left = (bulletPosition * 6100) + "px";
+}
+
+
+
+
 var marker = L.marker([53.83, 17.98]).addTo(map)
 marker.bindPopup("siema siema o tej porze").addTo(map)
 
@@ -35,3 +52,4 @@ var overlayMaps = {
     "Nadleśnictwa": nadlesnictwa
 };
 var layerControl = L.control.layers(baseMaps, overlayMaps).addTo(map);
+
