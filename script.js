@@ -1,8 +1,8 @@
 var map = L.map( 'map', {
-    center: [53.83, 17.98],
+    center: [53.85, 17.5],
     minZoom: 7,
-	maxZoom: 15,
-    zoom: 9,
+	maxZoom: 25,
+    zoom: 9.7,
 	zoomSnap:0.001,
 });
 var openstreetmap = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -13,6 +13,43 @@ var openstreetmap = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.
 var mapbox = L.tileLayer('https://api.mapbox.com/styles/v1/adryanque/cl3d4aqvh002114nwim5raj6p/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoiYWRyeWFucXVlIiwiYSI6ImNrZDk5bzd3YTAyMTkycG16MnVqeDJtOTEifQ.7tl32VrqOcLSfXMTj2X-YA', {
     attribution: "© <a href='https://www.mapbox.com/about/maps/'>Mapbox</a> © <a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a> <strong><a href='https://www.mapbox.com/map-feedback/' target='_blank'>Improve this map</a></strong>"
 }).addTo(map);
+
+
+
+var nadlesnictwa = L.tileLayer.wms("http://localhost:8080/geoserver/wms", {
+layers: 'nadlesnictwa',
+format: 'image/png',
+zIndex: 4,
+transparent: true,
+opacity: 1
+})
+
+var bory_tucholskie = L.tileLayer.wms("http://localhost:8080/geoserver/wms", {
+layers: 'bory_tucholskie',
+format: 'image/png',
+zIndex: 4,
+transparent: true,
+opacity: 1
+})
+
+var wycinki = L.tileLayer.wms("http://localhost:8080/geoserver/wms", {
+layers: 'poligonizowane',
+format: 'image/png',
+zIndex: 4,
+transparent: true,
+opacity: 1
+})
+
+var baseMaps = {
+    "OpenStreetMap": openstreetmap,
+    "Mapbox": mapbox
+};
+
+var overlayMaps = {
+    "Nadleśnictwa": nadlesnictwa,
+    "Bory Tucholskie": bory_tucholskie
+};
+var layerControl = L.control.layers(baseMaps, overlayMaps).addTo(map);
 
 
 
@@ -28,28 +65,14 @@ function showSliderValue() {
   rangeBullet.style.left = (bulletPosition * 6100) + "px";
 }
 
+rangeSlider.addEventListener("input", info, false);
 
+function info(){
+    if (rangeSlider.value == '2018'){
+        bory_tucholskie.addTo(map);
+    }
+    else if (rangeSlider.value == '2005'){
+        wycinki.addTo(map);
+    }
 
-
-var marker = L.marker([53.83, 17.98]).addTo(map)
-marker.bindPopup("siema siema o tej porze").addTo(map)
-
-var nadlesnictwa = L.tileLayer.wms("http://localhost:8080/geoserver/wms", {
-layers: 'nadlesnictwa',
-format: 'image/png',
-zIndex: 4,
-transparent: true,
-opacity: 1
-}).addTo(map);
-
-
-var baseMaps = {
-    "OpenStreetMap": openstreetmap,
-    "Mapbox": mapbox
-};
-
-var overlayMaps = {
-    "Nadleśnictwa": nadlesnictwa
-};
-var layerControl = L.control.layers(baseMaps, overlayMaps).addTo(map);
-
+}
