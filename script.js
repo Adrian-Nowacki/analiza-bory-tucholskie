@@ -15,7 +15,7 @@ var mapbox = L.tileLayer('https://api.mapbox.com/styles/v1/adryanque/cl3d4aqvh00
 }).addTo(map);
 
 var wms_service = "http://localhost:8080/geoserver/wms"
-var sql_text = ""
+var sql_text = "DN=2001"
 
 var nadlesnictwa = L.tileLayer.wms(wms_service, {
 layers: 'nadlesnictwa',
@@ -75,65 +75,9 @@ function showSliderValue() {
 rangeSlider.addEventListener("input", info, false);
 
 function info(){
-    if (rangeSlider.value == '2001'){
-        wycinki.setParams({CQL_FILTER:"DN <=" + rangeSlider.value});
-    }
-    else if (rangeSlider.value == '2002'){
-        wycinki.setParams({CQL_FILTER:"DN <=" + rangeSlider.value});
-    }
-    else if (rangeSlider.value == '2003'){
-        wycinki.setParams({CQL_FILTER:"DN <=" + rangeSlider.value});
-    }
-    else if (rangeSlider.value == '2004'){
-        wycinki.setParams({CQL_FILTER:"DN <=" + rangeSlider.value});
-    }
-    else if (rangeSlider.value == '2005'){
-        wycinki.setParams({CQL_FILTER:"DN <=" + rangeSlider.value});
-    }
-    else if (rangeSlider.value == '2006'){
-        wycinki.setParams({CQL_FILTER:"DN <=" + rangeSlider.value});
-    }
-    else if (rangeSlider.value == '2007'){
-        wycinki.setParams({CQL_FILTER:"DN <=" + rangeSlider.value});
-    }
-    else if (rangeSlider.value == '2008'){
-        wycinki.setParams({CQL_FILTER:"DN <=" + rangeSlider.value});
-    }
-    else if (rangeSlider.value == '2009'){
-        wycinki.setParams({CQL_FILTER:"DN <=" + rangeSlider.value});
-    }
-    else if (rangeSlider.value == '2010'){
-        wycinki.setParams({CQL_FILTER:"DN <=" + rangeSlider.value});
-    }
-    else if (rangeSlider.value == '2011'){
-        wycinki.setParams({CQL_FILTER:"DN <=" + rangeSlider.value});
-    }
-    else if (rangeSlider.value == '2012'){
-        wycinki.setParams({CQL_FILTER:"DN <=" + rangeSlider.value});
-    }
-    else if (rangeSlider.value == '2013'){
-        wycinki.setParams({CQL_FILTER:"DN <=" + rangeSlider.value});
-    }
-    else if (rangeSlider.value == '2014'){
-        wycinki.setParams({CQL_FILTER:"DN <=" + rangeSlider.value});
-    }
-    else if (rangeSlider.value == '2015'){
-        wycinki.setParams({CQL_FILTER:"DN <=" + rangeSlider.value});
-    }
-    else if (rangeSlider.value == '2016'){
-        wycinki.setParams({CQL_FILTER:"DN <=" + rangeSlider.value});
-    }
-    else if (rangeSlider.value == '2017'){
-        wycinki.setParams({CQL_FILTER:"DN <=" + rangeSlider.value});
-    }
-    else if (rangeSlider.value == '2018'){
-        wycinki.setParams({CQL_FILTER:"DN <=" + rangeSlider.value});
-    }
-    else if (rangeSlider.value == '2019'){
-        wycinki.setParams({CQL_FILTER:"DN <=" + rangeSlider.value});
-    }
-    else if (rangeSlider.value == '2020'){
-        wycinki.setParams({CQL_FILTER:"DN <=" + rangeSlider.value});
+    for (let i = 2001; i <= 2020; i++){
+        wycinki.setParams({CQL_FILTER:"DN <=" + rangeSlider.value})
+
     }
 }
 
