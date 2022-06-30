@@ -34,13 +34,14 @@ opacity: 1
 })
 
 
-    var wycinki = L.tileLayer.wms(wms_service, {
-    layers: 'wycinki',
-    format: 'image/png',
-    zIndex: 4,
-    transparent: true,
-    opacity: 1
-    }).addTo(map);
+var wycinki = L.tileLayer.wms(wms_service, {
+layers: 'wycinki',
+format: 'image/png',
+zIndex: 4,
+transparent: true,
+opacity: 1,
+cql_filter:sql_text
+}).addTo(map);
 
 
 
@@ -74,13 +75,66 @@ function showSliderValue() {
 rangeSlider.addEventListener("input", info, false);
 
 function info(){
-    if (rangeSlider.value == '2002'){
-        wycinki.setParams({CQL_FILTER:"DN=" + rangeSlider.value});
+    if (rangeSlider.value == '2001'){
+        wycinki.setParams({CQL_FILTER:"DN <=" + rangeSlider.value});
+    }
+    else if (rangeSlider.value == '2002'){
+        wycinki.setParams({CQL_FILTER:"DN <=" + rangeSlider.value});
     }
     else if (rangeSlider.value == '2003'){
-        
+        wycinki.setParams({CQL_FILTER:"DN <=" + rangeSlider.value});
     }
-load(sql_text);
+    else if (rangeSlider.value == '2004'){
+        wycinki.setParams({CQL_FILTER:"DN <=" + rangeSlider.value});
+    }
+    else if (rangeSlider.value == '2005'){
+        wycinki.setParams({CQL_FILTER:"DN <=" + rangeSlider.value});
+    }
+    else if (rangeSlider.value == '2006'){
+        wycinki.setParams({CQL_FILTER:"DN <=" + rangeSlider.value});
+    }
+    else if (rangeSlider.value == '2007'){
+        wycinki.setParams({CQL_FILTER:"DN <=" + rangeSlider.value});
+    }
+    else if (rangeSlider.value == '2008'){
+        wycinki.setParams({CQL_FILTER:"DN <=" + rangeSlider.value});
+    }
+    else if (rangeSlider.value == '2009'){
+        wycinki.setParams({CQL_FILTER:"DN <=" + rangeSlider.value});
+    }
+    else if (rangeSlider.value == '2010'){
+        wycinki.setParams({CQL_FILTER:"DN <=" + rangeSlider.value});
+    }
+    else if (rangeSlider.value == '2011'){
+        wycinki.setParams({CQL_FILTER:"DN <=" + rangeSlider.value});
+    }
+    else if (rangeSlider.value == '2012'){
+        wycinki.setParams({CQL_FILTER:"DN <=" + rangeSlider.value});
+    }
+    else if (rangeSlider.value == '2013'){
+        wycinki.setParams({CQL_FILTER:"DN <=" + rangeSlider.value});
+    }
+    else if (rangeSlider.value == '2014'){
+        wycinki.setParams({CQL_FILTER:"DN <=" + rangeSlider.value});
+    }
+    else if (rangeSlider.value == '2015'){
+        wycinki.setParams({CQL_FILTER:"DN <=" + rangeSlider.value});
+    }
+    else if (rangeSlider.value == '2016'){
+        wycinki.setParams({CQL_FILTER:"DN <=" + rangeSlider.value});
+    }
+    else if (rangeSlider.value == '2017'){
+        wycinki.setParams({CQL_FILTER:"DN <=" + rangeSlider.value});
+    }
+    else if (rangeSlider.value == '2018'){
+        wycinki.setParams({CQL_FILTER:"DN <=" + rangeSlider.value});
+    }
+    else if (rangeSlider.value == '2019'){
+        wycinki.setParams({CQL_FILTER:"DN <=" + rangeSlider.value});
+    }
+    else if (rangeSlider.value == '2020'){
+        wycinki.setParams({CQL_FILTER:"DN <=" + rangeSlider.value});
+    }
 }
 
 /*var admin = L.geoJson(lossyear, {color: 'blue', fillOpacity: 0.1, weight: 2
