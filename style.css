@@ -29,7 +29,7 @@ html, body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  top: 200px;
+  bottom: 50px;
   left: 50px;
 }
 
@@ -44,10 +44,6 @@ html, body {
 
 .box-minmax span:first-child {
   margin-left: 10px;
-}
-
-.range-slider {
-  margin-top: 30vh;
 }
 
 .rs-range {
