@@ -28,8 +28,8 @@ font-family: "Trebuchet MS"
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    top:200px;
-    left:50px;
+    bottom:50px;
+    left:50px; 
 }
 .box-minmax{
   margin-top: 30px;
@@ -42,10 +42,7 @@ font-family: "Trebuchet MS"
     margin-left: 10px;
   }
 }
-.range-slider {
-    margin-top: 30vh;
-    
-}
+
 .rs-range {
     margin-top: 29px;
     width: 600px;
