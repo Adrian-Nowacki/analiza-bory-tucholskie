@@ -15,6 +15,58 @@ var mapbox = L.tileLayer('https://api.mapbox.com/styles/v1/adryanque/cl3d4aqvh00
 }).addTo(map);
 
 var wms_service = "http://localhost:8080/geoserver/wms"
+var wfs_service = "http://localhost:8080/geoserver/ows"
+var wfs_service_url = "http://localhost:8080/geoserver/projekt_bory_tucholskie/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=projekt_bory_tucholskie%3Anadlesnictwa&outputFormat=application/json"
+
+async function getWFSgeojson(){
+    try{
+        const response = await fetch(wfs_service_url);
+        console.log(response);
+        return await response.json();
+    } catch(err) {
+        console.log(err);
+    }
+
+}
+
+var geojsonLayer = new L.GeoJSON();
+
+function getColor(DN) {
+    return DN > 7000  ? '#BD0026' :
+           DN > 5000  ? '#E31A1C' :
+           DN > 2000  ? '#FC4E2A' :
+           DN > 1000   ? '#FD8D3C' :
+           DN > 500   ? '#FEB24C' :
+           DN > 100   ? '#FED976' :
+                      '#FFEDA0';
+}
+
+function style(feature) {
+    return {
+        fillColor: getColor(feature.properties.pow_wycinek_ha),
+        weight: 2,
+        opacity: 1,
+        color: 'white',
+        dashArray: '3',
+        fillOpacity: 0.7
+    };
+}
+
+getWFSgeojson().then(data=> {
+    var wfsPolylayer = L.geoJSON([data], {
+        onEachFeature: function (feature, layer){
+            console.log(feature);
+            var popupContent = "<div><b>" + feature.properties.reg_name + "</b></br>"
+            + feature.properties.ins_name + "</br>" + feature.properties.pow_wycinek_ha + "</div>";
+            layer.bindPopup(popupContent);
+        },
+        style: style,
+    }).addTo(geojsonLayer);
+});
+
+
+
+
 var sql_text = "DN=2001"
 
 var nadlesnictwa = L.tileLayer.wms(wms_service, {
@@ -37,7 +89,7 @@ opacity: 1
 var wycinki = L.tileLayer.wms(wms_service, {
 layers: 'wycinki',
 format: 'image/png',
-zIndex: 4,
+zIndex: 10,
 transparent: true,
 opacity: 1,
 cql_filter:sql_text
@@ -54,7 +106,8 @@ var baseMaps = {
 
 var overlayMaps = {
     "Nadleśnictwa": nadlesnictwa,
-    "Bory Tucholskie": bory_tucholskie
+    "Bory Tucholskie": bory_tucholskie,
+    "eeee": geojsonLayer
 };
 var layerControl = L.control.layers(baseMaps, overlayMaps).addTo(map);
 
