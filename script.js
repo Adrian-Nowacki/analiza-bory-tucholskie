@@ -66,7 +66,6 @@ getWFSgeojson().then(data=> {
 
 
 
-
 var sql_text = "DN=2001"
 
 var nadlesnictwa = L.tileLayer.wms(wms_service, {
@@ -110,7 +109,6 @@ var overlayMaps = {
     "eeee": geojsonLayer
 };
 var layerControl = L.control.layers(baseMaps, overlayMaps).addTo(map);
-
 
 
 
