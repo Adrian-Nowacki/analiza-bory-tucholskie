@@ -66,6 +66,7 @@ getWFSgeojson().then(data=> {
 
 
 
+
 var sql_text = "DN=2001"
 
 var nadlesnictwa = L.tileLayer.wms(wms_service, {
@@ -95,9 +96,6 @@ cql_filter:sql_text
 }).addTo(map);
 
 
-
-
-
 var baseMaps = {
     "OpenStreetMap": openstreetmap,
     "Mapbox": mapbox
@@ -109,8 +107,6 @@ var overlayMaps = {
     "eeee": geojsonLayer
 };
 var layerControl = L.control.layers(baseMaps, overlayMaps).addTo(map);
-
-
 
 var rangeSlider = document.getElementById("rs-range-line");
 var rangeBullet = document.getElementById("rs-bullet");
@@ -134,6 +130,5 @@ function info(){
 
 var skala = L.control.scale().addTo(map);
 
-/*var admin = L.geoJson(lossyear, {color: 'blue', fillOpacity: 0.1, weight: 2
+/*var admin = L.geoJson(gain, {color: 'blue', fillOpacity: 0.1, weight: 2
 });*/
-
