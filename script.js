@@ -132,3 +132,6 @@ var skala = L.control.scale().addTo(map);
 
 /*var admin = L.geoJson(gain, {color: 'blue', fillOpacity: 0.1, weight: 2
 });*/
+
+
+
