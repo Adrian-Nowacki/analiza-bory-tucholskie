@@ -128,7 +128,7 @@ function info(){
     }
 }
 
-var skala = L.control.scale().addTo(map);
+var skala = L.control.scale(imperial=false).addTo(map);
 
 /*var admin = L.geoJson(gain, {color: 'blue', fillOpacity: 0.1, weight: 2
 });*/
