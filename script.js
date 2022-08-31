@@ -35,7 +35,7 @@ function getColor(DN) {
     return DN > 7000  ? '#BD0026' :
            DN > 5000  ? '#E31A1C' :
            DN > 2000  ? '#FC4E2A' :
-           DN > 1000   ? '#FD8D3C' :
+           DN > 1000  ? '#FD8D3C' :
            DN > 500   ? '#FEB24C' :
            DN > 100   ? '#FED976' :
                       '#FFEDA0';
@@ -59,6 +59,12 @@ getWFSgeojson().then(data=> {
             var popupContent = "<div><b>" + feature.properties.reg_name + "</b></br>"
             + feature.properties.ins_name + "</br>" + feature.properties.pow_wycinek_ha + "</div>";
             layer.bindPopup(popupContent);
+
+            if (feature.properties.ins_name == "LIPUSZ"){
+                layer.on('click',function(e){
+                    document.getElementById("title").innerHTML = feature.properties.pow_wycinek_ha;
+                });
+                }
         },
         style: style,
     }).addTo(geojsonLayer);
@@ -134,4 +140,30 @@ var skala = L.control.scale(imperial=false).addTo(map);
 });*/
 
 
+
+
+/* legenda do warstw*/
+
+var legend = L.control({position: 'bottomright'});
+
+legend.onAdd = function (map) {
+
+    var div = L.DomUtil.create('div', 'info legend');
+    var grades = [100, 500, 1000, 2000, 5000, 7000];
+    var labels = [];
+    var from, to;
+
+    for (var i = 0; i < grades.length; i++) {
+        from = grades[i];
+        to = grades[i + 1];
+
+        labels.push(
+            '<i style="background:' + getColor(from + 1) + '"></i> ' +
+            from + (to ? '&ndash;' + to : '+'));
+    }
+
+    div.innerHTML = labels.join('<br>');
+    return div;
+};
+legend.addTo(map);
 
