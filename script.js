@@ -44,10 +44,10 @@ function getColor(DN) {
 function style(feature) {
     return {
         fillColor: getColor(feature.properties.pow_wycinek_ha),
-        weight: 2,
-        opacity: 1,
-        color: 'white',
-        dashArray: '3',
+        weight: 1.5,
+        opacity: 0.7,
+        color: '#222',
+        dashArray: '4',
         fillOpacity: 0.7
     };
 }
@@ -60,11 +60,13 @@ getWFSgeojson().then(data=> {
             + feature.properties.ins_name + "</br>" + feature.properties.pow_wycinek_ha + "</div>";
             layer.bindPopup(popupContent);
 
-            if (feature.properties.ins_name == "LIPUSZ"){
-                layer.on('click',function(e){
-                    document.getElementById("title").innerHTML = feature.properties.pow_wycinek_ha;
-                });
-                }
+
+            layer.on('click',function(e){
+                    var d = document.getElementById("title");
+                    d.innerHTML = "Adres: " + feature.properties.pow_wycinek_ha;
+        });
+            
+            
         },
         style: style,
     }).addTo(geojsonLayer);
@@ -76,30 +78,63 @@ getWFSgeojson().then(data=> {
 var sql_text = "DN=2001"
 
 var nadlesnictwa = L.tileLayer.wms(wms_service, {
-layers: 'nadlesnictwa',
-format: 'image/png',
-zIndex: 4,
-transparent: true,
-opacity: 1
-})
+    layers: 'nadlesnictwa',
+    format: 'image/png',
+    zIndex: 4,
+    transparent: true,
+    opacity: 1
+});
 
 var bory_tucholskie = L.tileLayer.wms(wms_service, {
-layers: 'bory_tucholskie',
-format: 'image/png',
-zIndex: 4,
-transparent: true,
-opacity: 1
-})
+    layers: 'bory_tucholskie',
+    format: 'image/png',
+    zIndex: 4,
+    transparent: true,
+    opacity: 1
+});
 
 
 var wycinki = L.tileLayer.wms(wms_service, {
-layers: 'wycinki',
-format: 'image/png',
-zIndex: 10,
-transparent: true,
-opacity: 1,
-cql_filter:sql_text
+    layers: 'wycinki',
+    format: 'image/png',
+    zIndex: 10,
+    transparent: true,
+    opacity: 1,
+    cql_filter:sql_text
 }).addTo(map);
+
+var przyrost_drzew = L.tileLayer.wms(wms_service, {
+    layers: 'przyrost_drzew',
+    format: 'image/png',
+    zIndex: 4,
+    transparent: true,
+    opacity: 1
+    
+});
+
+var pokrycie_drzew_2000 = L.tileLayer.wms(wms_service, {
+    layers: 'pokrycie_drzew_2000',
+    format: 'image/png',
+    zIndex: 4,
+    transparent: true,
+    opacity: 1
+});
+
+var pokrycie_drzew_2010 = L.tileLayer.wms(wms_service, {
+    layers: 'pokrycie_drzew_2010',
+    format: 'image/png',
+    zIndex: 4,
+    transparent: true,
+    opacity: 1
+});   
+
+var zmiana_pokrycia_00_10 = L.tileLayer.wms(wms_service, {
+    layers: 'zmiana_pokrycia_00_10',
+    format: 'image/png',
+    zIndex: 4,
+    transparent: true,
+    opacity: 1
+});   
 
 
 var baseMaps = {
@@ -108,9 +143,13 @@ var baseMaps = {
 };
 
 var overlayMaps = {
-    "Nadleśnictwa": nadlesnictwa,
     "Bory Tucholskie": bory_tucholskie,
-    "eeee": geojsonLayer
+    "Nadleśnictwa": geojsonLayer,
+    "Przyrost drzew": przyrost_drzew,
+    "Pokrycie drzewami w 2000 r.": pokrycie_drzew_2000,
+    "Pokrycie drzewami w 2010 r.": pokrycie_drzew_2010,
+    "Zmiana pokrycia drzewami 2000-2010": zmiana_pokrycia_00_10
+
 };
 var layerControl = L.control.layers(baseMaps, overlayMaps).addTo(map);
 
@@ -118,6 +157,18 @@ var rangeSlider = document.getElementById("rs-range-line");
 var rangeBullet = document.getElementById("rs-bullet");
 
 rangeSlider.addEventListener("input", showSliderValue, false);
+rangeSlider.addEventListener("input", showLayerInfo, false);
+
+const cars = ["27 km", "1440 km", "twoja stara", "12.333 km"];
+
+
+function showLayerInfo() {
+    for(let i = rangeSlider.min - 1; i <= rangeSlider.max - 20; i++){
+        document.getElementById("title").innerHTML = cars[rangeSlider.value - i];
+        
+    }
+  
+}
 
 function showSliderValue() {
   rangeBullet.innerHTML = rangeSlider.value;
@@ -159,11 +210,10 @@ legend.onAdd = function (map) {
 
         labels.push(
             '<i style="background:' + getColor(from + 1) + '"></i> ' +
-            from + (to ? '&ndash;' + to : '+'));
+            from + (to ? ' &ndash; ' + to : '+'));
     }
 
     div.innerHTML = labels.join('<br>');
     return div;
 };
 legend.addTo(map);
-
