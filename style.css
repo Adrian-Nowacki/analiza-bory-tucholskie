@@ -34,12 +34,14 @@ html, body {
 }
 
 .box-minmax {
-  margin-top: 30px;
+  margin-top: 15px;
   width: 608px;
   display: flex;
   justify-content: space-between;
-  font-size: 20px;
+  font-size: 26px;
   color: #222222;
+  font-weight:bold;
+  font-family:"Trebuchet MS";
 }
 
 .box-minmax span:first-child {
@@ -58,9 +60,9 @@ html, body {
 
 .rs-range::-webkit-slider-runnable-track {
   width: 100%;
-  height: 1px;
+  height: 2.5px;
   cursor: pointer;
-  box-shadow: none;
+  box-shadow: 0px 1px 3px #ddd;
   background: #222222;
   border-radius: 0px;
   border: 0px solid #010101;
@@ -68,7 +70,7 @@ html, body {
 
 .rs-range::-moz-range-track {
   width: 100%;
-  height: 1px;
+  height: 2.5px;
   cursor: pointer;
   box-shadow: none;
   background: #222222;
@@ -78,12 +80,12 @@ html, body {
 
 .rs-range::-webkit-slider-thumb {
   box-shadow: none;
-  border: 0px solid #222222;
+  border: 1.5px solid #222222;
   box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.25);
   height: 42px;
   width: 22px;
   border-radius: 22px;
-  background: white;
+  background: #2d8659;
   cursor: pointer;
   -webkit-appearance: none;
   margin-top: -20px;
@@ -112,7 +114,7 @@ html, body {
   display: block;
   width: 98px;
   height: 98px;
-  background: transparent;
+  background: rgba(20, 20, 20, 0.85);
   border-radius: 50%;
   line-height: 30px;
   text-align: center;
@@ -123,11 +125,12 @@ html, body {
   margin-top: 20px;
   margin-left: -38px;
   left: attr(value);
-  color: #222;
+  color: #ddd;
   font-style: normal;
   font-weight: bold;
   line-height: bold;
   font-size: 36px;
+  box-shadow: inset 0 0 0 3px #111;
 }
 
 .rs-label::before {

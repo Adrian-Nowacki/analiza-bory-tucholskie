@@ -143,7 +143,7 @@ var baseMaps = {
 };
 
 var overlayMaps = {
-    "Bory Tucholskie": bory_tucholskie,
+    "Granica Borów Tucholskich": bory_tucholskie,
     "Nadleśnictwa": geojsonLayer,
     "Przyrost drzew": przyrost_drzew,
     "Pokrycie drzewami w 2000 r.": pokrycie_drzew_2000,
@@ -217,3 +217,4 @@ legend.onAdd = function (map) {
     return div;
 };
 legend.addTo(map);
+
