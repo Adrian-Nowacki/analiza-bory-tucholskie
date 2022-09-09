@@ -172,7 +172,7 @@ function showLayerInfo() {
 
 function showSliderValue() {
   rangeBullet.innerHTML = rangeSlider.value;
-  var bulletPosition = ((rangeSlider.value - 2001) /(rangeSlider.max - 1820));
+  var bulletPosition = ((rangeSlider.value - 2000) /(rangeSlider.max - 1809));
   rangeBullet.style.left = (bulletPosition * 6100) + "px";
 }
 
