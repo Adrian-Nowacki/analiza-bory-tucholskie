@@ -75,7 +75,7 @@ getWFSgeojson().then(data=> {
 
 
 
-var sql_text = "DN=2001"
+var sql_text = "DN=2000"
 
 var nadlesnictwa = L.tileLayer.wms(wms_service, {
     layers: 'nadlesnictwa',
@@ -179,7 +179,7 @@ function showSliderValue() {
 rangeSlider.addEventListener("input", info, false);
 
 function info(){
-    for (let i = 2001; i <= 2020; i++){
+    for (let i = 2000; i <= 2020; i++){
         wycinki.setParams({CQL_FILTER:"DN <=" + rangeSlider.value})
 
     }
