@@ -32,13 +32,13 @@ async function getWFSgeojson(){
 var geojsonLayer = new L.GeoJSON();
 
 function getColor(DN) {
-    return DN > 7000  ? '#BD0026' :
-           DN > 5000  ? '#E31A1C' :
-           DN > 2000  ? '#FC4E2A' :
-           DN > 1000  ? '#FD8D3C' :
-           DN > 500   ? '#FEB24C' :
-           DN > 100   ? '#FED976' :
-                      '#FFEDA0';
+    return DN > 7000  ? '#1c4f60' :
+           DN > 5000  ? '#246d70' :
+           DN > 2000  ? '#358679' :
+           DN > 1000  ? '#4da183' :
+           DN > 500   ? '#6cbc90' :
+           DN > 100   ? '#95d2a4' :
+                      '#c4e6c3';
 }
 
 function style(feature) {

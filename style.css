@@ -214,3 +214,8 @@ html, body {
 .leaflet-control-layers{
   top:50px!important;
 }
+.leaflet-popup-content-wrapper, .leaflet-popup-tip {
+  background-color:#222!important;
+  color:#ddd!important;
+  opacity:0.85;
+}
