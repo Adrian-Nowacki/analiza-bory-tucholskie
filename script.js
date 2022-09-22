@@ -57,9 +57,9 @@ getWFSgeojson().then(data=> {
         onEachFeature: function (feature, layer){
             console.log(feature);
             var popupContent = "<div><b>" + feature.properties.reg_name + "</b></br>"
-            + "Nadleśnictwo: " + feature.properties.ins_name + "</br>" + "Powierzchnia wycinek: " + feature.properties.pow_wycinek_ha + "</div>" + "</br>" 
-            + "Powierzchnia nadleśnictwa: " + feature.properties.area_km2 + "</br>" + "% pokrycia: " + feature.properties.p_cover + "</br>"
-            + "% straty: " + feature.properties.p_loss + "</br>" + "% przyrostu" + feature.properties.p_gain;
+            + "<b> Nadleśnictwo: </b>" + feature.properties.ins_name + "</br>" + "<b> Powierzchnia wycinek: </b>" + feature.properties.pow_wycinek_ha + "</br>" 
+            + "<b> Powierzchnia nadleśnictwa: </b>" + feature.properties.area_km2 + "</br>" + "<b> % pokrycia: </b>" + feature.properties.p_cover + "</br>"
+            + "<b> % straty: </b>" + feature.properties.p_loss + "</br>" + "<b> % przyrostu: </b>" + feature.properties.p_gain + "</div>";
             layer.bindPopup(popupContent);
 
 
