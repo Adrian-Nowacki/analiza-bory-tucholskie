@@ -1,5 +1,6 @@
 html, body {
   margin: 0;
+  font-family: "Source Sans Pro"!important;
 }
 
 #map {
@@ -222,4 +223,73 @@ html, body {
 .ikonka {
   text-align:center;
   margin-top:6px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+.item {
+  margin-bottom: 2em;
+  justify-items: center;
+  justify-content: center;
+  align-items: start;
+  margin-top:2em;
+}
+
+/* toggle-rect-color */
+.toggle-rect-color input[type="checkbox"] {
+  display: none;
+}
+.toggle-rect-color input[type="checkbox"] + label {
+  display: block;
+  position: relative;
+  width: 3em;
+  height: 1.6em;
+  margin-bottom: 20px;
+  background: #c35555;
+  border-radius: 0.2em;
+  box-shadow: inset 0px 0px 5px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+.toggle-rect-color input[type="checkbox"] + label:before {
+  content: "";
+  display: block;
+  width: 1.2em;
+  height: 1.2em;
+  border-radius: 0.2em;
+  background: #b0b0b0;
+  box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.2);
+  position: absolute;
+  left: 0.2em;
+  top: 0.2em;
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+.toggle-rect-color input[type="checkbox"]:checked + label {
+  background: #4f9c75;
+}
+.toggle-rect-color input[type="checkbox"]:checked + label:before {
+  box-shadow: -2px 0px 5px rgba(0, 0, 0, 0.2);
+  left: 1.6em;
+}
+/*toggle-color-end*/
+
+#checkbox-text {
+  margin-left: 3.4em;
+  display: block;
+  position: relative;
+  margin-top: -4em;  
+  line-height: 3.8em;  
 }

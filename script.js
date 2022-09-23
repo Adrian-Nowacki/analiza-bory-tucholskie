@@ -103,7 +103,7 @@ var wycinki = L.tileLayer.wms(wms_service, {
     transparent: true,
     opacity: 1,
     cql_filter:sql_text
-}).addTo(map);
+})
 
 var przyrost_drzew = L.tileLayer.wms(wms_service, {
     layers: 'przyrost_drzew',
@@ -144,6 +144,65 @@ var baseMaps = {
     "Mapbox": mapbox
 };
 
+document.getElementById("warstwa_dane").addEventListener("click", function () {
+    document.getElementById("warstwa_dane").style.backgroundColor = '#dddddd';
+	if(!(map.hasLayer(geojsonLayer))){
+		geojsonLayer.addTo(map)
+		/*document.getElementById("narodowe_button").style.border = '3px solid #3b724d';*/
+	}
+	else if(map.hasLayer(geojsonLayer)){
+	map.removeLayer(geojsonLayer);
+	/*document.getElementById("narodowe_button").style.border = '1px solid #aaaaaa';*/
+}});
+
+document.getElementById("warstwa_granice").addEventListener("click", function () {
+	if(!(map.hasLayer(geojsonLayer))){
+		geojsonLayer.addTo(map)
+		/*document.getElementById("narodowe_button").style.border = '3px solid #3b724d';*/
+	}
+	else if(map.hasLayer(geojsonLayer)){
+	map.removeLayer(geojsonLayer);
+	/*document.getElementById("narodowe_button").style.border = '1px solid #aaaaaa';*/
+}});
+
+document.getElementById("warstwa_wylesienie").addEventListener("click", function () {
+	if(!(map.hasLayer(wycinki))){
+		wycinki.addTo(map)
+		/*document.getElementById("narodowe_button").style.border = '3px solid #3b724d';*/
+	}
+	else if(map.hasLayer(wycinki)){
+	map.removeLayer(wycinki);
+	/*document.getElementById("narodowe_button").style.border = '1px solid #aaaaaa';*/
+}});
+
+document.getElementById("warstwa_przyrost").addEventListener("click", function () {
+	if(!(map.hasLayer(przyrost_drzew))){
+		przyrost_drzew.addTo(map)
+		/*document.getElementById("narodowe_button").style.border = '3px solid #3b724d';*/
+	}
+	else if(map.hasLayer(przyrost_drzew)){
+	map.removeLayer(przyrost_drzew);
+	/*document.getElementById("narodowe_button").style.border = '1px solid #aaaaaa';*/
+}});
+
+var bool = !bool;
+$(".checkbox_granica").change(function(){
+    if(!(map.hasLayer(bory_tucholskie))){
+        map.addLayer(bory_tucholskie)
+    }
+
+    else{
+        map.removeLayer(bory_tucholskie)
+    }
+  });
+
+  function bory_remove(){
+    map.removeLayer(bory_tucholskie);
+  }
+  $(".ikona_tab").bind("click", function () {
+    map.removeLayer(bory_tucholskie);
+  });
+/*
 var overlayMaps = {
     "Granica Borów Tucholskich": bory_tucholskie,
     "Nadleśnictwa": geojsonLayer,
@@ -154,7 +213,7 @@ var overlayMaps = {
 
 };
 var layerControl = L.control.layers(baseMaps, overlayMaps).addTo(map);
-
+*/
 var rangeSlider = document.getElementById("rs-range-line");
 var rangeBullet = document.getElementById("rs-bullet");
 
