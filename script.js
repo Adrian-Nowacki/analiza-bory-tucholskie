@@ -149,6 +149,7 @@ document.getElementById("warstwa_dane").addEventListener("click", function () {
         map.removeLayer(zmiana_pokrycia_00_10);
         map.removeLayer(wycinki) 
         map.removeLayer(przyrost_drzew);
+        $("#slider-container").css("display", "none");
 		geojsonLayer.addTo(map);
         $(".ikona_tab").css("background-color", "#588c3a");
          $("#warstwa_dane").css("background-color", "#ffffff");
@@ -177,6 +178,7 @@ document.getElementById("warstwa_pokrycie").addEventListener("click", function (
         map.removeLayer(geojsonLayer);
         map.removeLayer(wycinki) 
         map.removeLayer(przyrost_drzew);
+        $("#slider-container").css("display", "none");
 		zmiana_pokrycia_00_10.addTo(map);
         $(".ikona_tab").css("background-color", "#588c3a");
         $("#warstwa_pokrycie").css("background-color", "#ffffff");
@@ -189,6 +191,7 @@ document.getElementById("warstwa_pokrycie").addEventListener("click", function (
 
 document.getElementById("warstwa_wylesienie").addEventListener("click", function () {
 	if(!(map.hasLayer(wycinki))){
+        $("#slider-container").css("display", "flex");
         map.removeLayer(zmiana_pokrycia_00_10);
         map.removeLayer(geojsonLayer) 
         map.removeLayer(przyrost_drzew);
@@ -197,6 +200,7 @@ document.getElementById("warstwa_wylesienie").addEventListener("click", function
          $("#warstwa_wylesienie").css("background-color", "#ffffff");
 	}
 	else if(map.hasLayer(wycinki)){
+        $("#slider-container").css("display", "none");
 	map.removeLayer(wycinki);
     $(".ikona_tab").css("background-color", "#588c3a");
 }});
@@ -207,6 +211,7 @@ document.getElementById("warstwa_przyrost").addEventListener("click", function (
         map.removeLayer(zmiana_pokrycia_00_10);
         map.removeLayer(wycinki) 
         map.removeLayer(geojsonLayer);
+        $("#slider-container").css("display", "none");
 		przyrost_drzew.addTo(map);
         $(".ikona_tab").css("background-color", "#588c3a");
         $("#warstwa_przyrost").css("background-color", "#ffffff");
