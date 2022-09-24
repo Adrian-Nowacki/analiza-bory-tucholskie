@@ -197,7 +197,9 @@ html, body {
   text-align:center;
   margin-top:6px;
 }
-
+.ikona_tab:hover {
+  background-color:#526a44!important;
+}
 
 
 
@@ -264,7 +266,7 @@ html, body {
   display: block;
   position: relative;
   margin-top: -4em;  
-  line-height: 3.8em;  
+  line-height: 4.2em;  
 }
 .leaflet-control-zoom {
   top:50px!important;

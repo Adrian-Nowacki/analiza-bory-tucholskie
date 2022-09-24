@@ -41,6 +41,23 @@ function getColor(DN) {
                       '#c4e6c3';
 }
 
+
+var layer;
+
+function highlightFeature(e) {
+    var layer = e.target;
+
+    layer.setStyle({
+        weight: 4,
+        color: '#151515',
+        dashArray: '2',
+        fillOpacity: 0.9
+    });
+}
+
+
+
+
 function style(feature) {
     return {
         fillColor: getColor(feature.properties.pow_wycinek_ha),
@@ -52,8 +69,29 @@ function style(feature) {
     };
 }
 
+function resetHighlight(e) {
+    var layer = e.target;
+
+    layer.setStyle({
+        weight: 1.5,
+        opacity: 0.7,
+        color: '#222',
+        dashArray: '4',
+        fillOpacity: 0.7
+    });
+}
+
+function onEachFeature(feature, layer) {
+    layer.on({
+        mouseover: highlightFeature,
+        mouseout: resetHighlight
+    });
+};
+
+
 getWFSgeojson().then(data=> {
     var wfsPolylayer = L.geoJSON([data], {
+        style:style,
         onEachFeature: function (feature, layer){
             console.log(feature);
             var popupContent = "<div><b>" + feature.properties.reg_name + "</b></br>"
@@ -61,19 +99,22 @@ getWFSgeojson().then(data=> {
             + "<b> Powierzchnia nadleśnictwa: </b>" + feature.properties.area_km2 + "</br>" + "<b> % pokrycia: </b>" + feature.properties.p_cover + "</br>"
             + "<b> % straty: </b>" + feature.properties.p_loss + "</br>" + "<b> % przyrostu: </b>" + feature.properties.p_gain + "</div>";
             layer.bindPopup(popupContent);
+            layer.on({
+                mouseover: highlightFeature,
+                mouseout: resetHighlight
+            });
 
-
+/*
             layer.on('click',function(e){
                     var d = document.getElementById("title");
                     d.innerHTML = "Adres: " + feature.properties.pow_wycinek_ha;
         });
+        */    
             
-            
-        },
-        style: style,
+        }
+       
     }).addTo(geojsonLayer);
 });
-
 
 
 
@@ -151,30 +192,18 @@ document.getElementById("warstwa_dane").addEventListener("click", function () {
         map.removeLayer(przyrost_drzew);
         $("#slider-container").css("display", "none");
 		geojsonLayer.addTo(map);
+        legend.addTo(map);
         $(".ikona_tab").css("background-color", "#588c3a");
          $("#warstwa_dane").css("background-color", "#ffffff");
-         map.removeLayer(warstwa_pokrycie)
-	}
-	else if(map.hasLayer(geojsonLayer)){
-	map.removeLayer(geojsonLayer);
-    $(".ikona_tab").css("background-color", "#588c3a");
-}});
+         map.removeLayer(warstwa_pokrycie);
+         
+	}});
 
-/*
-document.getElementById("warstwa_granice").addEventListener("click", function () {
-	if(!(map.hasLayer())){
-		.addTo(map);
-        $("#warstwa_granice").css("background-color", "#ffffff");
-	}
-	else if(map.hasLayer()){
-	map.removeLayer(); 
-    $(".ikona_tab").css("background-color", "#588c3a");
-    
-}});
-*/
+
 
 document.getElementById("warstwa_pokrycie").addEventListener("click", function () {
 	if(!(map.hasLayer(zmiana_pokrycia_00_10))){
+        map.removeControl(legend);
         map.removeLayer(geojsonLayer);
         map.removeLayer(wycinki) 
         map.removeLayer(przyrost_drzew);
@@ -182,32 +211,25 @@ document.getElementById("warstwa_pokrycie").addEventListener("click", function (
 		zmiana_pokrycia_00_10.addTo(map);
         $(".ikona_tab").css("background-color", "#588c3a");
         $("#warstwa_pokrycie").css("background-color", "#ffffff");
-	}
-	else if(map.hasLayer(zmiana_pokrycia_00_10)){
-	map.removeLayer(zmiana_pokrycia_00_10);
-    $(".ikona_tab").css("background-color", "#588c3a");
-}});
+	}});
 
 
 document.getElementById("warstwa_wylesienie").addEventListener("click", function () {
 	if(!(map.hasLayer(wycinki))){
         $("#slider-container").css("display", "flex");
+        map.removeControl(legend);
         map.removeLayer(zmiana_pokrycia_00_10);
         map.removeLayer(geojsonLayer) 
         map.removeLayer(przyrost_drzew);
 		wycinki.addTo(map);
         $(".ikona_tab").css("background-color", "#588c3a");
          $("#warstwa_wylesienie").css("background-color", "#ffffff");
-	}
-	else if(map.hasLayer(wycinki)){
-        $("#slider-container").css("display", "none");
-	map.removeLayer(wycinki);
-    $(".ikona_tab").css("background-color", "#588c3a");
-}});
+	}});
 
 
 document.getElementById("warstwa_przyrost").addEventListener("click", function () {
 	if(!(map.hasLayer(przyrost_drzew))){
+        map.removeControl(legend);
         map.removeLayer(zmiana_pokrycia_00_10);
         map.removeLayer(wycinki) 
         map.removeLayer(geojsonLayer);
@@ -215,11 +237,7 @@ document.getElementById("warstwa_przyrost").addEventListener("click", function (
 		przyrost_drzew.addTo(map);
         $(".ikona_tab").css("background-color", "#588c3a");
         $("#warstwa_przyrost").css("background-color", "#ffffff");
-	}
-	else if(map.hasLayer(przyrost_drzew)){
-	map.removeLayer(przyrost_drzew);
-    $(".ikona_tab").css("background-color", "#588c3a");
-}});
+	}});
 
 
 document.getElementById("warstwa_tornado").addEventListener("click", function () {
@@ -271,12 +289,16 @@ var rangeBullet = document.getElementById("rs-bullet");
 rangeSlider.addEventListener("input", showSliderValue, false);
 rangeSlider.addEventListener("input", showLayerInfo, false);
 
-const cars = ["27 km", "1440 km", "twoja stara", "12.333 km"];
-
+const cars = ["27", "14", "23 ", "12", "1", "760",
+"27", "144", "23", "12", "76"];
+var powierzchnia = 0;
 
 function showLayerInfo() {
+    
     for(let i = rangeSlider.min - 1; i <= rangeSlider.max - 20; i++){
-        document.getElementById("title").innerHTML = cars[rangeSlider.value - i];
+        powierzchnia += parseInt(cars[i]);
+        document.getElementById("wylesienie_statystyki").innerHTML = "<b>Łączna powierzchnia: </b>" + powierzchnia + "</br></br>"
+        + "<b>Rok " + rangeSlider.value + ": </b>" + cars[rangeSlider.value - i + 1];
         
     }
   
@@ -328,7 +350,6 @@ legend.onAdd = function (map) {
     div.innerHTML = labels.join('<br>');
     return div;
 };
-legend.addTo(map);
 
 map.zoomControl.setPosition('topright');
 
