@@ -145,7 +145,8 @@ var baseMaps = {
 };
 
 document.getElementById("warstwa_dane").addEventListener("click", function () {
-    document.getElementById("warstwa_dane").style.backgroundColor = '#dddddd';
+    $(".ikona_tab").css("background-color", "#588c3a");
+    $("#warstwa_dane").css("background-color", "#ffffff");
 	if(!(map.hasLayer(geojsonLayer))){
 		geojsonLayer.addTo(map)
 		/*document.getElementById("narodowe_button").style.border = '3px solid #3b724d';*/
@@ -156,6 +157,8 @@ document.getElementById("warstwa_dane").addEventListener("click", function () {
 }});
 
 document.getElementById("warstwa_granice").addEventListener("click", function () {
+    $(".ikona_tab").css("background-color", "#588c3a");
+    $("#warstwa_granice").css("background-color", "#ffffff");
 	if(!(map.hasLayer(geojsonLayer))){
 		geojsonLayer.addTo(map)
 		/*document.getElementById("narodowe_button").style.border = '3px solid #3b724d';*/
@@ -165,7 +168,21 @@ document.getElementById("warstwa_granice").addEventListener("click", function ()
 	/*document.getElementById("narodowe_button").style.border = '1px solid #aaaaaa';*/
 }});
 
+document.getElementById("warstwa_pokrycie").addEventListener("click", function () {
+    $(".ikona_tab").css("background-color", "#588c3a");
+    $("#warstwa_pokrycie").css("background-color", "#ffffff");
+	if(!(map.hasLayer(zmiana_pokrycia_00_10))){
+		zmiana_pokrycia_00_10.addTo(map)
+		/*document.getElementById("narodowe_button").style.border = '3px solid #3b724d';*/
+	}
+	else if(map.hasLayer(zmiana_pokrycia_00_10)){
+	map.removeLayer(zmiana_pokrycia_00_10);
+	/*document.getElementById("narodowe_button").style.border = '1px solid #aaaaaa';*/
+}});
+
 document.getElementById("warstwa_wylesienie").addEventListener("click", function () {
+    $(".ikona_tab").css("background-color", "#588c3a");
+    $("#warstwa_wylesienie").css("background-color", "#ffffff");
 	if(!(map.hasLayer(wycinki))){
 		wycinki.addTo(map)
 		/*document.getElementById("narodowe_button").style.border = '3px solid #3b724d';*/
@@ -176,6 +193,8 @@ document.getElementById("warstwa_wylesienie").addEventListener("click", function
 }});
 
 document.getElementById("warstwa_przyrost").addEventListener("click", function () {
+    $(".ikona_tab").css("background-color", "#588c3a");
+    $("#warstwa_przyrost").css("background-color", "#ffffff");
 	if(!(map.hasLayer(przyrost_drzew))){
 		przyrost_drzew.addTo(map)
 		/*document.getElementById("narodowe_button").style.border = '3px solid #3b724d';*/
@@ -183,6 +202,14 @@ document.getElementById("warstwa_przyrost").addEventListener("click", function (
 	else if(map.hasLayer(przyrost_drzew)){
 	map.removeLayer(przyrost_drzew);
 	/*document.getElementById("narodowe_button").style.border = '1px solid #aaaaaa';*/
+}});
+
+document.getElementById("warstwa_tornado").addEventListener("click", function () {
+    $(".ikona_tab").css("background-color", "#588c3a");
+    $("#warstwa_tornado").css("background-color", "#ffffff");
+	if(!(map.hasLayer(geojsonLayer))){
+	}
+	else if(map.hasLayer(geojsonLayer)){
 }});
 
 var bool = !bool;
