@@ -77,7 +77,7 @@ getWFSgeojson().then(data=> {
 
 
 
-var sql_text = "DN=2000"
+var sql_text = "DN<=2010"
 
 var nadlesnictwa = L.tileLayer.wms(wms_service, {
     layers: 'nadlesnictwa',
@@ -243,12 +243,16 @@ $(".checkbox_granica").change(function(){
     }
   });
 
-  function bory_remove(){
-    map.removeLayer(bory_tucholskie);
-  }
+ 
   $(".ikona_tab").bind("click", function () {
     map.removeLayer(bory_tucholskie);
+    document.getElementById("check_1").checked = false;
+    document.getElementById("check_2").checked = false;
+    document.getElementById("check_3").checked = false;
   });
+  
+
+
 /*
 var overlayMaps = {
     "Granica Borów Tucholskich": bory_tucholskie,
@@ -327,3 +331,4 @@ legend.onAdd = function (map) {
 legend.addTo(map);
 
 map.zoomControl.setPosition('topright');
+

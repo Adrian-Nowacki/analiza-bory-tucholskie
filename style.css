@@ -127,7 +127,7 @@ html, body {
   border: 2px solid #222;
   margin-top: 20px;
   margin-left: -38px;
-  left: attr(value);
+  left: 289.1px;
   color: #ddd;
   font-style: normal;
   font-weight: bold;
@@ -228,7 +228,7 @@ html, body {
   width: 3em;
   height: 1.6em;
   margin-bottom: 20px;
-  background: #c35555;
+  background: #404040;
   border-radius: 0.2em;
   box-shadow: inset 0px 0px 5px rgba(0, 0, 0, 0.1);
   cursor: pointer;
