@@ -145,72 +145,87 @@ var baseMaps = {
 };
 
 document.getElementById("warstwa_dane").addEventListener("click", function () {
-    $(".ikona_tab").css("background-color", "#588c3a");
-    $("#warstwa_dane").css("background-color", "#ffffff");
 	if(!(map.hasLayer(geojsonLayer))){
-		geojsonLayer.addTo(map)
-		/*document.getElementById("narodowe_button").style.border = '3px solid #3b724d';*/
+        map.removeLayer(zmiana_pokrycia_00_10);
+        map.removeLayer(wycinki) 
+        map.removeLayer(przyrost_drzew);
+		geojsonLayer.addTo(map);
+        $(".ikona_tab").css("background-color", "#588c3a");
+         $("#warstwa_dane").css("background-color", "#ffffff");
+         map.removeLayer(warstwa_pokrycie)
 	}
 	else if(map.hasLayer(geojsonLayer)){
 	map.removeLayer(geojsonLayer);
-	/*document.getElementById("narodowe_button").style.border = '1px solid #aaaaaa';*/
+    $(".ikona_tab").css("background-color", "#588c3a");
 }});
 
+/*
 document.getElementById("warstwa_granice").addEventListener("click", function () {
-    $(".ikona_tab").css("background-color", "#588c3a");
-    $("#warstwa_granice").css("background-color", "#ffffff");
-	if(!(map.hasLayer(geojsonLayer))){
-		geojsonLayer.addTo(map)
-		/*document.getElementById("narodowe_button").style.border = '3px solid #3b724d';*/
+	if(!(map.hasLayer())){
+		.addTo(map);
+        $("#warstwa_granice").css("background-color", "#ffffff");
 	}
-	else if(map.hasLayer(geojsonLayer)){
-	map.removeLayer(geojsonLayer);
-	/*document.getElementById("narodowe_button").style.border = '1px solid #aaaaaa';*/
+	else if(map.hasLayer()){
+	map.removeLayer(); 
+    $(".ikona_tab").css("background-color", "#588c3a");
+    
 }});
+*/
 
 document.getElementById("warstwa_pokrycie").addEventListener("click", function () {
-    $(".ikona_tab").css("background-color", "#588c3a");
-    $("#warstwa_pokrycie").css("background-color", "#ffffff");
 	if(!(map.hasLayer(zmiana_pokrycia_00_10))){
-		zmiana_pokrycia_00_10.addTo(map)
-		/*document.getElementById("narodowe_button").style.border = '3px solid #3b724d';*/
+        map.removeLayer(geojsonLayer);
+        map.removeLayer(wycinki) 
+        map.removeLayer(przyrost_drzew);
+		zmiana_pokrycia_00_10.addTo(map);
+        $(".ikona_tab").css("background-color", "#588c3a");
+        $("#warstwa_pokrycie").css("background-color", "#ffffff");
 	}
 	else if(map.hasLayer(zmiana_pokrycia_00_10)){
 	map.removeLayer(zmiana_pokrycia_00_10);
-	/*document.getElementById("narodowe_button").style.border = '1px solid #aaaaaa';*/
+    $(".ikona_tab").css("background-color", "#588c3a");
 }});
 
+
 document.getElementById("warstwa_wylesienie").addEventListener("click", function () {
-    $(".ikona_tab").css("background-color", "#588c3a");
-    $("#warstwa_wylesienie").css("background-color", "#ffffff");
 	if(!(map.hasLayer(wycinki))){
-		wycinki.addTo(map)
-		/*document.getElementById("narodowe_button").style.border = '3px solid #3b724d';*/
+        map.removeLayer(zmiana_pokrycia_00_10);
+        map.removeLayer(geojsonLayer) 
+        map.removeLayer(przyrost_drzew);
+		wycinki.addTo(map);
+        $(".ikona_tab").css("background-color", "#588c3a");
+         $("#warstwa_wylesienie").css("background-color", "#ffffff");
 	}
 	else if(map.hasLayer(wycinki)){
 	map.removeLayer(wycinki);
-	/*document.getElementById("narodowe_button").style.border = '1px solid #aaaaaa';*/
+    $(".ikona_tab").css("background-color", "#588c3a");
 }});
 
+
 document.getElementById("warstwa_przyrost").addEventListener("click", function () {
-    $(".ikona_tab").css("background-color", "#588c3a");
-    $("#warstwa_przyrost").css("background-color", "#ffffff");
 	if(!(map.hasLayer(przyrost_drzew))){
-		przyrost_drzew.addTo(map)
-		/*document.getElementById("narodowe_button").style.border = '3px solid #3b724d';*/
+        map.removeLayer(zmiana_pokrycia_00_10);
+        map.removeLayer(wycinki) 
+        map.removeLayer(geojsonLayer);
+		przyrost_drzew.addTo(map);
+        $(".ikona_tab").css("background-color", "#588c3a");
+        $("#warstwa_przyrost").css("background-color", "#ffffff");
 	}
 	else if(map.hasLayer(przyrost_drzew)){
 	map.removeLayer(przyrost_drzew);
-	/*document.getElementById("narodowe_button").style.border = '1px solid #aaaaaa';*/
+    $(".ikona_tab").css("background-color", "#588c3a");
 }});
 
+
 document.getElementById("warstwa_tornado").addEventListener("click", function () {
-    $(".ikona_tab").css("background-color", "#588c3a");
-    $("#warstwa_tornado").css("background-color", "#ffffff");
-	if(!(map.hasLayer(geojsonLayer))){
+	if(!(map.hasLayer())){
+        $("#warstwa_tornado").css("background-color", "#ffffff");
 	}
-	else if(map.hasLayer(geojsonLayer)){
+	else if(map.hasLayer()){
+        $(".ikona_tab").css("background-color", "#588c3a");
 }});
+
+
 
 var bool = !bool;
 $(".checkbox_granica").change(function(){
@@ -306,3 +321,4 @@ legend.onAdd = function (map) {
 };
 legend.addTo(map);
 
+map.zoomControl.setPosition('topright');

@@ -293,3 +293,6 @@ html, body {
   margin-top: -4em;  
   line-height: 3.8em;  
 }
+.leaflet-control-zoom {
+  top:50px!important;
+}
