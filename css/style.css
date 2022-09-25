@@ -275,6 +275,70 @@ html, body {
   top:50px!important;
 }
 
+
+#mapa_bazowa_1 {
+	width:330px;
+	height:150px;
+	display:block;	
+	text-align:center;
+}
+#nazwa_mapy_1 {
+	width:330px;
+	height:20px;
+	display:block;
+	text-align:center;	
+	margin-top:5px;
+	font-family:'Trebuchet MS', sans-serif;
+}
+#mapa_bazowa_2 {
+	width:330px;
+	height:150px;
+	display:block;
+	text-align:center;	
+	margin-top:20px;
+}
+#nazwa_mapy_2 {
+	width:330px;
+	height:20px;
+	display:block;	
+	text-align:center;
+	margin-top:5px;
+	font-family:'Trebuchet MS', sans-serif;
+}
+#mapa_bazowa_3 {
+	width:330px;
+	height:150px;
+	display:block;	
+	text-align:center;
+	margin-top:20px;
+}
+#nazwa_mapy_3 {
+	width:330px;
+	height:20px;
+	display:block;	
+	text-align:center;
+	margin-top:5px;
+	font-family:'Trebuchet MS', sans-serif;
+}
+.mapy_bazowe {
+	width:200px;
+	height:144px;
+	border:2px #111 solid;
+	-moz-transition: all 0.3s ease-in-out;
+	-o-transition: all 0.3s ease-in-out;
+	-webkit-transition: all 0.3s ease-in-out;
+	transition: all 0.3s ease-in-out;
+	overflow:hidden;
+	border-radius:25px;
+	box-shadow: 0 0 0.7em #aaa;
+}
+.mapy_bazowe:hover {
+	cursor:pointer;
+	opacity:0.6;
+}
+
+
+
 /*
 @media screen and (max-width: 600px) {
   #title{
