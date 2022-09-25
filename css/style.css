@@ -277,59 +277,65 @@ html, body {
 
 
 #mapa_bazowa_1 {
-	width:330px;
-	height:150px;
+  margin-top: 35px;
+	width:300px;
+	height:120px;
 	display:block;	
 	text-align:center;
+  margin-left: 11%;
 }
 #nazwa_mapy_1 {
-	width:330px;
-	height:20px;
+	width:300px;
+	height:10px;
 	display:block;
 	text-align:center;	
 	margin-top:5px;
+  margin-left: 11%;
 	font-family:'Trebuchet MS', sans-serif;
 }
 #mapa_bazowa_2 {
-	width:330px;
-	height:150px;
+	width:300px;
+	height:120px;
 	display:block;
 	text-align:center;	
-	margin-top:20px;
+	margin-top:30px;
+  margin-left: 11%;
 }
 #nazwa_mapy_2 {
-	width:330px;
-	height:20px;
+	width:300px;
+	height:10px;
 	display:block;	
 	text-align:center;
 	margin-top:5px;
+  margin-left: 11%;
 	font-family:'Trebuchet MS', sans-serif;
 }
 #mapa_bazowa_3 {
-	width:330px;
-	height:150px;
+	width:300px;
+	height:120px;
 	display:block;	
 	text-align:center;
-	margin-top:20px;
+	margin-top:30px;
+  margin-left: 11%;
 }
 #nazwa_mapy_3 {
-	width:330px;
-	height:20px;
+	width:300px;
+	height:10px;
 	display:block;	
 	text-align:center;
 	margin-top:5px;
+  margin-left: 11%;
 	font-family:'Trebuchet MS', sans-serif;
 }
 .mapy_bazowe {
-	width:200px;
-	height:144px;
-	border:2px #111 solid;
+	width:180px;
+	height:120px;
+	border: #588c3a solid;
 	-moz-transition: all 0.3s ease-in-out;
 	-o-transition: all 0.3s ease-in-out;
 	-webkit-transition: all 0.3s ease-in-out;
 	transition: all 0.3s ease-in-out;
 	overflow:hidden;
-	border-radius:25px;
 	box-shadow: 0 0 0.7em #aaa;
 }
 .mapy_bazowe:hover {
