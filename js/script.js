@@ -17,7 +17,7 @@ var mapbox = L.tileLayer('https://api.mapbox.com/styles/v1/adryanque/cl3d4aqvh00
 var wms_service = "https://poznan-gis.pl/geoserver/wms"
 var wfs_service = "https://poznan-gis.pl/geoserver/ows"
 var wfs_service_url = "https://poznan-gis.pl/geoserver/deforestacja_bory_tucholskie/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=deforestacja_bory_tucholskie%3Anadlesnictwa&outputFormat=application/json"
-
+/*
 async function getWFSgeojson(){
     try{
         const response = await fetch(wfs_service_url);
@@ -28,7 +28,7 @@ async function getWFSgeojson(){
     }
 
 }
-
+*/
 var geojsonLayer = new L.GeoJSON();
 
 function getColor(DN) {
@@ -89,6 +89,24 @@ function onEachFeature(feature, layer) {
 };
 
 
+
+var geojsonLayer= new L.GeoJSON.AJAX("https://poznan-gis.pl/geoserver/deforestacja_bory_tucholskie/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=deforestacja_bory_tucholskie%3Anadlesnictwa&outputFormat=application/json",{onEachFeature:function forEachFeature (feature,layer){
+},
+style:style,
+onEachFeature: function (feature, layer){
+    console.log(feature);
+    var popupContent = "<div><b>" + feature.properties.reg_name + "</b></br>"
+    + "<b> Nadleśnictwo: </b>" + feature.properties.ins_name + "</br>" + "<b> Powierzchnia wycinek: </b>" + feature.properties.pow_wycinek_ha + "</br>" 
+    + "<b> Powierzchnia nadleśnictwa: </b>" + feature.properties.area_km2 + "</br>" + "<b> % pokrycia: </b>" + feature.properties.p_cover + "</br>"
+    + "<b> % straty: </b>" + feature.properties.p_loss + "</br>" + "<b> % przyrostu: </b>" + feature.properties.p_gain + "</div>";
+    layer.bindPopup(popupContent);
+    layer.on({
+        mouseover: highlightFeature,
+        mouseout: resetHighlight
+    });
+}});
+
+/*
 getWFSgeojson().then(data=> {
     var wfsPolylayer = L.geoJSON([data], {
         style:style,
@@ -103,19 +121,19 @@ getWFSgeojson().then(data=> {
                 mouseover: highlightFeature,
                 mouseout: resetHighlight
             });
-
+*/
 /*
             layer.on('click',function(e){
                     var d = document.getElementById("title");
                     d.innerHTML = "Adres: " + feature.properties.pow_wycinek_ha;
         });
         */    
-            
+       /*     
         }
        
     }).addTo(geojsonLayer);
 });
-
+*/
 
 
 var sql_text = "DN<=2010"
