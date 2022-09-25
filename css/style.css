@@ -2,6 +2,7 @@ html, body {
   margin: 0;
   font-family: "Source Sans Pro"!important;
   overflow-x: hidden;
+  background-color:#588c3a;
 }
 
 #map {
@@ -147,9 +148,7 @@ html, body {
   margin-top: -10px;
 }
 
-.sidebar{
-  top:100px!important;
-}
+
 
 .fa{
   line-height: 2!important;
@@ -339,22 +338,12 @@ html, body {
 
 
 
-/*
+
 @media screen and (max-width: 600px) {
-  #title{
-    height:70px!important;
-    font-size:90%!important;
-}
-.leaflet-control-zoom {
-  top:75px!important;
-}
+
+
 #sidebar{
-  height:300px!important;
-}
-.leaflet-control-attribution{
-  height:60%;
-
+  top:360px!important;
 }
 
 }
-*/
