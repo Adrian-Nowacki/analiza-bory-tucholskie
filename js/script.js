@@ -17,6 +17,7 @@ var mapbox = L.tileLayer('https://api.mapbox.com/styles/v1/adryanque/cl3d4aqvh00
 var wms_service = "https://poznan-gis.pl/geoserver/wms"
 var wfs_service = "https://poznan-gis.pl/geoserver/ows"
 var wfs_service_url = "https://poznan-gis.pl/geoserver/deforestacja_bory_tucholskie/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=deforestacja_bory_tucholskie%3Anadlesnictwa&outputFormat=application/json"
+
 /*
 async function getWFSgeojson(){
     try{
@@ -121,14 +122,14 @@ getWFSgeojson().then(data=> {
                 mouseover: highlightFeature,
                 mouseout: resetHighlight
             });
-*/
+
 /*
             layer.on('click',function(e){
                     var d = document.getElementById("title");
                     d.innerHTML = "Adres: " + feature.properties.pow_wycinek_ha;
         });
         */    
-       /*     
+          /*
         }
        
     }).addTo(geojsonLayer);
