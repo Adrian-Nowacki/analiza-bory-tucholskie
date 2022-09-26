@@ -100,11 +100,41 @@ var geojsonLayer= new L.GeoJSON.AJAX("https://poznan-gis.pl/geoserver/deforestac
 style:style,
 onEachFeature: function (feature, layer){
     console.log(feature);
+    layer.bindPopup('<table id = "tabela_zespoly">\
+    <caption>'+feature.properties.ins_name+'</caption>\
+    <tr class = "wiersz">\
+      <td id = "komorka_zespoly">Region: </td>\
+      <td id = "komorka2_zespoly">'+feature.properties.reg_name+'</td>\
+    </tr>\
+    <tr class = "wiersz">\
+      <td id = "komorka_zespoly">Powierzchnia wycinek: </td>\
+      <td id = "komorka2_zespoly">'+feature.properties.pow_wycinek_ha+'</td>\
+    </tr>\
+    </tr>\
+    <tr class = "wiersz">\
+      <td id = "komorka_zespoly">Powierzchnia nadleśnictwa: </td>\
+      <td id = "komorka2_zespoly">'+feature.properties.area_km2+'</td>\
+    </tr>\
+    <tr class = "wiersz">\
+      <td id = "komorka_zespoly">% pokrycia: </td>\
+      <td id = "komorka2_zespoly">'+feature.properties.p_cover+'</td>\
+    </tr>\
+    <tr class = "wiersz">\
+      <td id = "komorka_zespoly">% straty: </td>\
+      <td id = "komorka2_zespoly">'+feature.properties.p_loss+'</td>\
+    </tr>\
+    <tr class = "wiersz">\
+      <td id = "komorka_zespoly">% przyrostu: </td>\
+      <td id = "komorka2_zespoly">'+feature.properties.p_gain+'</td>\
+    </tr>\
+    </table>')
+
+    /*
     var popupContent = "<div><b>" + feature.properties.reg_name + "</b></br>"
     + "<b> Nadleśnictwo: </b>" + feature.properties.ins_name + "</br>" + "<b> Powierzchnia wycinek: </b>" + feature.properties.pow_wycinek_ha + "</br>" 
     + "<b> Powierzchnia nadleśnictwa: </b>" + feature.properties.area_km2 + "</br>" + "<b> % pokrycia: </b>" + feature.properties.p_cover + "</br>"
     + "<b> % straty: </b>" + feature.properties.p_loss + "</br>" + "<b> % przyrostu: </b>" + feature.properties.p_gain + "</div>";
-    layer.bindPopup(popupContent);
+    layer.bindPopup(popupContent);*/
     layer.on({
         mouseover: highlightFeature,
         mouseout: resetHighlight
@@ -224,7 +254,16 @@ document.getElementById("warstwa_dane").addEventListener("click", function () {
 
 
 
-
+    document.getElementById("warstwa_pokrycie").addEventListener("click", function () {
+        if(!(map.hasLayer(zmiana_pokrycia_00_10))){
+            map.removeControl(legend);
+            map.removeLayer(geojsonLayer);
+            map.removeLayer(wycinki) 
+            map.removeLayer(przyrost_drzew);
+            $("#slider-container").css("display", "none");
+            $(".ikona_tab").css("background-color", "#588c3a");
+            $("#warstwa_pokrycie").css("background-color", "#ffffff");
+        }});
 
 
 document.getElementById("warstwa_wylesienie").addEventListener("click", function () {
