@@ -5,14 +5,18 @@ var map = L.map( 'map', {
     zoom: 9.7,
 	zoomSnap:0.001,
 });
+
 var openstreetmap = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-}).addTo(map);
-
+})
 
 var mapbox = L.tileLayer('https://api.mapbox.com/styles/v1/adryanque/cl3d4aqvh002114nwim5raj6p/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoiYWRyeWFucXVlIiwiYSI6ImNrZDk5bzd3YTAyMTkycG16MnVqeDJtOTEifQ.7tl32VrqOcLSfXMTj2X-YA', {
     attribution: "© <a href='https://www.mapbox.com/about/maps/'>Mapbox</a> © <a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a> <strong><a href='https://www.mapbox.com/map-feedback/' target='_blank'>Improve this map</a></strong>"
 }).addTo(map);
+
+var satelita = L.tileLayer('https://api.mapbox.com/styles/v1/adryanque/ckqqyye3r4st018letzv7n099/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoiYWRyeWFucXVlIiwiYSI6ImNrZDk5bzd3YTAyMTkycG16MnVqeDJtOTEifQ.7tl32VrqOcLSfXMTj2X-YA', {
+    attribution: "© <a href='https://www.mapbox.com/about/maps/'>Mapbox</a> © <a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a> <strong><a href='https://www.mapbox.com/map-feedback/' target='_blank'>Improve this map</a></strong>"
+});
 
 var wms_service = "https://poznan-gis.pl/geoserver/wms"
 var wfs_service = "https://poznan-gis.pl/geoserver/ows"
@@ -220,17 +224,7 @@ document.getElementById("warstwa_dane").addEventListener("click", function () {
 
 
 
-document.getElementById("warstwa_pokrycie").addEventListener("click", function () {
-	if(!(map.hasLayer(zmiana_pokrycia_00_10))){
-        map.removeControl(legend);
-        map.removeLayer(geojsonLayer);
-        map.removeLayer(wycinki) 
-        map.removeLayer(przyrost_drzew);
-        $("#slider-container").css("display", "none");
-		zmiana_pokrycia_00_10.addTo(map);
-        $(".ikona_tab").css("background-color", "#588c3a");
-        $("#warstwa_pokrycie").css("background-color", "#ffffff");
-	}});
+
 
 
 document.getElementById("warstwa_wylesienie").addEventListener("click", function () {
@@ -372,3 +366,39 @@ legend.onAdd = function (map) {
 
 map.zoomControl.setPosition('topright');
 
+document.getElementById("mapa_bazowa_1").addEventListener("click", function(){
+	openstreetmap.addTo(map);
+	map.removeLayer(satelita);
+	map.removeLayer(mapbox);
+});
+document.getElementById("mapa_bazowa_2").addEventListener("click", function(){
+	satelita.addTo(map);
+	map.removeLayer(openstreetmap);
+	map.removeLayer(mapbox);
+});
+document.getElementById("mapa_bazowa_3").addEventListener("click", function(){
+	mapbox.addTo(map);
+	map.removeLayer(openstreetmap);
+	map.removeLayer(satelita);
+});
+
+
+
+/* warstwy pokrycia dla guzikow*/
+document.getElementById("guzik_1").addEventListener("click", function(){
+	pokrycie_drzew_2000.addTo(map);
+    map.removeLayer(pokrycie_drzew_2010);
+    map.removeLayer(zmiana_pokrycia_00_10);
+});
+
+document.getElementById("guzik_2").addEventListener("click", function(){
+	pokrycie_drzew_2010.addTo(map);
+    map.removeLayer(pokrycie_drzew_2000);
+    map.removeLayer(zmiana_pokrycia_00_10);
+});
+
+document.getElementById("guzik_3").addEventListener("click", function(){
+	zmiana_pokrycia_00_10.addTo(map);
+    map.removeLayer(pokrycie_drzew_2010);
+    map.removeLayer(pokrycie_drzew_2000);
+});
