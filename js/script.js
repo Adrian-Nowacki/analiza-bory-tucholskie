@@ -358,8 +358,7 @@ var rangeBullet = document.getElementById("rs-bullet");
 rangeSlider.addEventListener("input", showSliderValue, false);
 rangeSlider.addEventListener("input", showLayerInfo, false);
 
-const cars = ["27", "14", "23 ", "12", "1", "760",
-"27", "144", "23", "12", "76"];
+
 
 const defoarea_eachyear = ["222", "20", "24", "15", "158", "21", "19", "233", "18", "88", "45", "5", "36",
 "7", "379", "22", "79", "1", "4", "9"];
@@ -372,9 +371,9 @@ var powierzchnia = 0;
 function showLayerInfo() {
     
     for(let i = rangeSlider.min - 1; i <= rangeSlider.max - 20; i++){
-        powierzchnia += parseInt(cars[i]);
+        powierzchnia += parseInt(defoarea_eachyear [i]);
         document.getElementById("wylesienie_statystyki").innerHTML = "<b>Łączna powierzchnia: </b>" + powierzchnia + "</br></br>"
-        + "<b>Rok " + rangeSlider.value + ": </b>" + cars[rangeSlider.value - i + 1];
+        + "<b>Rok " + rangeSlider.value + ": </b>" + defoarea_eachyear[rangeSlider.value - i + 1];
         
     }
   
