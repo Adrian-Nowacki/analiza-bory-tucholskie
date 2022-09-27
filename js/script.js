@@ -240,6 +240,8 @@ var baseMaps = {
 
 document.getElementById("warstwa_dane").addEventListener("click", function () {
 	if(!(map.hasLayer(geojsonLayer))){
+        document.getElementById("imageopacity_1").innerHTML = "100%";
+        document.getElementById("opacity_slider_1").value = 100;
         map.removeLayer(zmiana_pokrycia_00_10);
         map.removeLayer(wycinki) 
         map.removeLayer(przyrost_drzew);
@@ -256,6 +258,8 @@ document.getElementById("warstwa_dane").addEventListener("click", function () {
 
     document.getElementById("warstwa_pokrycie").addEventListener("click", function () {
         if(!(map.hasLayer(zmiana_pokrycia_00_10))){
+            document.getElementById("imageopacity_1").innerHTML = "100%";
+        document.getElementById("opacity_slider_1").value = 100;
             map.removeControl(legend);
             map.removeLayer(geojsonLayer);
             map.removeLayer(wycinki) 
@@ -268,6 +272,8 @@ document.getElementById("warstwa_dane").addEventListener("click", function () {
 
 document.getElementById("warstwa_wylesienie").addEventListener("click", function () {
 	if(!(map.hasLayer(wycinki))){
+        document.getElementById("imageopacity_1").innerHTML = "100%";
+        document.getElementById("opacity_slider_1").value = 100;
         $("#slider-container").css("display", "flex");
         map.removeControl(legend);
         map.removeLayer(zmiana_pokrycia_00_10);
@@ -281,6 +287,8 @@ document.getElementById("warstwa_wylesienie").addEventListener("click", function
 
 document.getElementById("warstwa_przyrost").addEventListener("click", function () {
 	if(!(map.hasLayer(przyrost_drzew))){
+        document.getElementById("imageopacity_1").innerHTML = "100%";
+        document.getElementById("opacity_slider_1").value = 100;
         map.removeControl(legend);
         map.removeLayer(zmiana_pokrycia_00_10);
         map.removeLayer(wycinki) 
@@ -455,8 +463,12 @@ $(document).ready(function(){
 
 //przeźroczystość warstw rastrowych
 $(document).ready(function(){
-	$("#opacity-slider").on('input', function(value){
-	$("#imageopacity").html(this.value + "%");
+	$(".opacity-slider").on('input', function(value){
+	$(".imageopacity").html(this.value + "%");
 	wycinki.setOpacity(this.value / 100);
+    pokrycie_drzew_2000.setOpacity(this.value / 100);
+    pokrycie_drzew_2010.setOpacity(this.value / 100);
+    przyrost_drzew.setOpacity(this.value / 100);
+    zmiana_pokrycia_00_10.setOpacity(this.value / 100);
 	})
 });
