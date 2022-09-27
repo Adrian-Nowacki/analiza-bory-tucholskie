@@ -231,8 +231,8 @@ html, body {
 .toggle-rect-color input[type="checkbox"] + label {
   display: block;
   position: relative;
-  width: 3em;
-  height: 1.6em;
+  width: 2.7em;
+  height: 1.3em;
   margin-bottom: 20px;
   background: #404040;
   border-radius: 0.2em;
@@ -245,8 +245,8 @@ html, body {
 .toggle-rect-color input[type="checkbox"] + label:before {
   content: "";
   display: block;
-  width: 1.2em;
-  height: 1.2em;
+  width: 0.9em;
+  height: 0.9em;
   border-radius: 0.2em;
   background: #b0b0b0;
   box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.2);
@@ -270,7 +270,7 @@ html, body {
   display: block;
   position: relative;
   margin-top: -4em;  
-  line-height: 4.2em;  
+  line-height: 4.6em;  
 }
 .leaflet-control-zoom {
   top:50px!important;
