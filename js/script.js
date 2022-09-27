@@ -457,6 +457,6 @@ $(document).ready(function(){
 $(document).ready(function(){
 	$("#opacity-slider").on('input', function(value){
 	$("#imageopacity").html(this.value + "%");
-	wycinki.setOpacity(this.value);
+	wycinki.setOpacity(this.value / 100);
 	})
 });
