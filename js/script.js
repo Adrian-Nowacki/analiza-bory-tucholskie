@@ -441,3 +441,22 @@ document.getElementById("guzik_3").addEventListener("click", function(){
     map.removeLayer(pokrycie_drzew_2010);
     map.removeLayer(pokrycie_drzew_2000);
 });
+
+/*
+//przeźroczystość warstw rastrowych
+$(document).ready(function(){
+	$("#opacity-slider").on('change', function(){
+        var output = Math.abs($(this).val());
+	$("#image-opacity").html(output.toFixed(2));
+	wycinki.setOpacity(this.value * (-1));
+	})
+});
+*/
+
+//przeźroczystość warstw rastrowych
+$(document).ready(function(){
+	$("#opacity-slider").on('input', function(value){
+	$("#imageopacity").html(this.value + "%");
+	wycinki.setOpacity(this.value);
+	})
+});

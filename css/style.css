@@ -427,3 +427,40 @@ table td#komorka_zespoly {
 	font-weight:bold;
 }
 
+#suwak {
+	display:block;
+	width:330px;
+	height:170px;
+	text-align:center;
+	margin-top:20px;
+}
+
+#opacity-slider {
+	-webkit-appearance: none;
+	width: 250px;
+	height: 5px;
+	background: #404040;
+	outline: none;
+	opacity: 0.7;
+	-webkit-transition: .2s;
+	transition: opacity .2s;
+	margin-left:15px;
+	margin-top:10px;
+}
+#opacity-slider:hover {
+	opacity: 1;
+}
+#opacity-slider::-webkit-slider-thumb {
+	-webkit-appearance: none;
+	appearance: none;
+	width: 12px;
+	height: 25px;
+	background: #588c3a;
+	cursor: pointer;
+  }
+  #opacity-slider::-moz-range-thumb {
+	width: 25px;
+	height: 25px;
+	background: #588c3a;
+	cursor: pointer;
+  }
