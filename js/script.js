@@ -360,6 +360,10 @@ rangeSlider.addEventListener("input", showLayerInfo, false);
 
 const cars = ["27", "14", "23 ", "12", "1", "760",
 "27", "144", "23", "12", "76"];
+
+const wycinki_ha = ["6880,45", "2449,79", "1955,68", "3357,4", "8451,98", "782,33", "1017,52", "1673,75", "2910,96",
+ "2374,62", "1853,7", "2251,65", "2337,09", "7236", "4285,59"];
+
 var powierzchnia = 0;
 
 function showLayerInfo() {
