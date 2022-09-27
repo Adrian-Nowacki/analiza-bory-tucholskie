@@ -360,20 +360,19 @@ rangeSlider.addEventListener("input", showLayerInfo, false);
 
 
 
-const defoarea_eachyear = ["223,36", "429,81", "1102,97", "1003,38", "970,01", "1102,74", "1629,73", "727,56", "1775,82", "1831,46", 
-"1587,05", "2006,06", "1097,21", "1568,98", "1308,33", "2068,66", "5056,62", "18052,55", "4047,5", "2224,48"];
+const defoarea_eachyear = ["0", "223,36", "429,81", "1102,97", "1003,38", "970,01", "1102,74", "1629,73", "727,56", "1775,82", "1831,46", 
+"1587,05", "2006,06", "1097,21", "1568,98", "1308,33", "2068,66", "5056,62", "18 052,55", "4047,5", "2224,48"];
 
-const defoarea_sumyear = ["223,36", "653,17", "1756,14", "2759,52", "3729,53", "4832,27", "6462", "7189,56", "8965,38", "10796,84", 
-"12383,89", "14389,95", "15487,16", "17056,14", "18364,47", "20433,13", "25489,75", "43542,3", "47589,8", "49814,28"]
+const defoarea_sumyear = ["0", "223,36", "653,17", "1756,14", "2759,52", "3729,53", "4832,27", "6462", "7189,56", "8965,38", "10 796,84", 
+"12 383,89", "14 389,95", "15 487,16", "17 056,14", "18 364,47", "20 433,13", "25 489,75", "43 542,3", "47 589,8", "49 814,28"]
 
 var powierzchnia = 0;
 
 function showLayerInfo() {
     
     for(let i = rangeSlider.min - 1; i <= rangeSlider.max - 20; i++){
-        powierzchnia += parseInt(defoarea_eachyear [i]);
-        document.getElementById("wylesienie_statystyki").innerHTML = "<b>Łączna powierzchnia: </b>" + powierzchnia + "</br></br>"
-        + "<b>Rok " + rangeSlider.value + ": </b>" + defoarea_eachyear[rangeSlider.value - i + 1];
+        document.getElementById("wylesienie_statystyki").innerHTML = "<b>Łącznie od 2000 roku: </b>" + defoarea_sumyear[rangeSlider.value - i] + " ha</br></br>"
+        + "<b>Rok " + rangeSlider.value + ": </b>" + defoarea_eachyear[rangeSlider.value - i] + " ha";
         
     }
   
