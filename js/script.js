@@ -107,13 +107,13 @@ onEachFeature: function (feature, layer){
       <td id = "komorka2_zespoly">'+feature.properties.reg_name+'</td>\
     </tr>\
     <tr class = "wiersz">\
-      <td id = "komorka_zespoly">Powierzchnia wycinek: </td>\
-      <td id = "komorka2_zespoly">'+feature.properties.pow_wycinek_ha+'</td>\
+      <td id = "komorka_zespoly">Pow. wycinek: </td>\
+      <td id = "komorka2_zespoly">'+feature.properties.pow_wycinek_ha+' ha</td>\
     </tr>\
     </tr>\
     <tr class = "wiersz">\
-      <td id = "komorka_zespoly">Powierzchnia nadleśnictwa: </td>\
-      <td id = "komorka2_zespoly">'+feature.properties.area_km2+'</td>\
+      <td id = "komorka_zespoly">Pow. nadleśnictwa: </td>\
+      <td id = "komorka2_zespoly">'+feature.properties.area_km2+' km<sup>2</sup></td>\
     </tr>\
     <tr class = "wiersz">\
       <td id = "komorka_zespoly">% pokrycia: </td>\
