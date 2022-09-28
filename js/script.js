@@ -287,8 +287,6 @@ document.getElementById("warstwa_dane").addEventListener("click", function () {
             $(".imageopacity").html('100%');
             $(".opacity-slider").val(100);
             map.removeControl(legend_nadlesnictwa);
-            map.removeControl(legend_pokrycie_00);
-            map.removeControl(legend_zmiana_pokrycia);
             map.removeLayer(geojsonLayer);
             map.removeLayer(wycinki); 
             map.removeLayer(przyrost_drzew);
@@ -493,8 +491,9 @@ legend_zmiana_pokrycia.onAdd = function (map) {
         to = grades[i + 1];
 
         labels.push(
-            '<i style="background:' + getColor_zmiana_pokrycia(from + 1) + '"></i> ' +
+            '<i id = "clr_zmiana_pokrycia_' + i + '" style="background:' + getColor_zmiana_pokrycia(from + 1) + '"></i> ' +
             from + (to ? ' &ndash; ' + to : '+'));
+            labels.id = 'aaa'
     }
 
     div.innerHTML = labels.join('<br>');
