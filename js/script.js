@@ -36,7 +36,7 @@ async function getWFSgeojson(){
 */
 var geojsonLayer = new L.GeoJSON();
 
-function getColor(DN) {
+function getColor_nadlesnictwa(DN) {
     return DN > 7000  ? '#1c4f60' :
            DN > 5000  ? '#246d70' :
            DN > 2000  ? '#358679' :
@@ -44,7 +44,29 @@ function getColor(DN) {
            DN > 500   ? '#6cbc90' :
            DN > 100   ? '#95d2a4' :
                       '#c4e6c3';
-}
+};
+
+function getColor_pokrycie_00(DN) {
+    return DN > 80   ? '#0c5246' :
+           DN > 60    ? '#458566' :
+           DN > 40    ? '#50ac75' :
+           DN > 20    ? '#78bd74' :
+           DN > 0    ? '#dce2a5' :
+                        '#ffffff';
+};
+
+
+function getColor_zmiana_pokrycia(DN) {
+    return DN > 75     ? '#0c5246' :
+           DN > 50     ? '#458566' :
+           DN > 25     ? '#50ac75' :
+           DN > 0      ? '#5fba6c' :
+           DN > -25      ? '#eccd8b' :
+           DN > -50   ? '#e49562' :
+           DN > -75    ? '#a33a3a' :
+           DN > -100    ? '#6c2626' :
+                        '#ffffff';
+};
 
 
 var layer;
@@ -65,7 +87,7 @@ function highlightFeature(e) {
 
 function style(feature) {
     return {
-        fillColor: getColor(feature.properties.pow_wycinek_ha),
+        fillColor: getColor_nadlesnictwa(feature.properties.pow_wycinek_ha),
         weight: 1.5,
         opacity: 0.7,
         color: '#222',
@@ -250,7 +272,9 @@ document.getElementById("warstwa_dane").addEventListener("click", function () {
         map.removeLayer(pokrycie_drzew_2010);
         map.removeLayer(pokrycie_drzew_2000);
 		geojsonLayer.addTo(map);
-        legend.addTo(map);
+        legend_nadlesnictwa.addTo(map);
+        map.removeControl(legend_pokrycie_00);
+        map.removeControl(legend_zmiana_pokrycia);
         $("#slider-container").css("display", "none");
         $(".ikona_tab").css("background-color", "#588c3a");
         $("#warstwa_dane").css("background-color", "#ffffff");
@@ -262,7 +286,9 @@ document.getElementById("warstwa_dane").addEventListener("click", function () {
         if(!(map.hasLayer(zmiana_pokrycia_00_10))){
             $(".imageopacity").html('100%');
             $(".opacity-slider").val(100);
-            map.removeControl(legend);
+            map.removeControl(legend_nadlesnictwa);
+            map.removeControl(legend_pokrycie_00);
+            map.removeControl(legend_zmiana_pokrycia);
             map.removeLayer(geojsonLayer);
             map.removeLayer(wycinki); 
             map.removeLayer(przyrost_drzew);
@@ -278,7 +304,9 @@ document.getElementById("warstwa_wylesienie").addEventListener("click", function
         $(".imageopacity").html('100%');
         $(".opacity-slider").val(100);
         wycinki.setOpacity(100);
-        map.removeControl(legend);
+        map.removeControl(legend_nadlesnictwa);
+        map.removeControl(legend_pokrycie_00);
+        map.removeControl(legend_zmiana_pokrycia);
         map.removeLayer(zmiana_pokrycia_00_10);
         map.removeLayer(pokrycie_drzew_2010);
         map.removeLayer(pokrycie_drzew_2000);
@@ -296,7 +324,9 @@ document.getElementById("warstwa_przyrost").addEventListener("click", function (
         $(".opacity-slider").val(100);
         przyrost_drzew.addTo(map);
         przyrost_drzew.setOpacity(100);
-        map.removeControl(legend);
+        map.removeControl(legend_nadlesnictwa);
+        map.removeControl(legend_pokrycie_00);
+        map.removeControl(legend_zmiana_pokrycia);
         map.removeLayer(zmiana_pokrycia_00_10);
         map.removeLayer(pokrycie_drzew_2010);
         map.removeLayer(pokrycie_drzew_2000);
@@ -407,9 +437,11 @@ position: "bottomright"}).addTo(map);
 
 /* legenda do warstw*/
 
-var legend = L.control({position: 'bottomright'});
+var legend_nadlesnictwa = L.control({position: 'bottomright'});
+var legend_pokrycie_00 = L.control({position: 'bottomright'});
+var legend_zmiana_pokrycia = L.control({position: 'bottomright'});
 
-legend.onAdd = function (map) {
+legend_nadlesnictwa.onAdd = function (map) {
 
     var div = L.DomUtil.create('div', 'info legend');
     var grades = [100, 500, 1000, 2000, 5000, 7000];
@@ -421,13 +453,55 @@ legend.onAdd = function (map) {
         to = grades[i + 1];
 
         labels.push(
-            '<i style="background:' + getColor(from + 1) + '"></i> ' +
+            '<i style="background:' + getColor_nadlesnictwa(from + 1) + '"></i> ' +
             from + (to ? ' &ndash; ' + to : '+'));
     }
 
     div.innerHTML = labels.join('<br>');
     return div;
 };
+
+legend_pokrycie_00.onAdd = function (map) {
+
+    var div = L.DomUtil.create('div', 'info legend');
+    var grades = [0, 20, 40, 60, 80];
+    var labels = [];
+    var from, to;
+
+    for (var i = 0; i < grades.length; i++) {
+        from = grades[i];
+        to = grades[i + 1];
+
+        labels.push(
+            '<i style="background:' + getColor_pokrycie_00(from + 1) + '"></i> ' +
+            from + (to ? ' &ndash; ' + to : '+'));
+    }
+
+    div.innerHTML = labels.join('<br>');
+    return div;
+};
+
+legend_zmiana_pokrycia.onAdd = function (map) {
+
+    var div = L.DomUtil.create('div', 'info legend');
+    var grades = [-100, -75, -50, -25, 0, 25, 50, 75];
+    var labels = [];
+    var from, to;
+
+    for (var i = 0; i < grades.length; i++) {
+        from = grades[i];
+        to = grades[i + 1];
+
+        labels.push(
+            '<i style="background:' + getColor_zmiana_pokrycia(from + 1) + '"></i> ' +
+            from + (to ? ' &ndash; ' + to : '+'));
+    }
+
+    div.innerHTML = labels.join('<br>');
+    return div;
+};
+
+
 
 map.zoomControl.setPosition('topright');
 
@@ -452,20 +526,26 @@ document.getElementById("mapa_bazowa_3").addEventListener("click", function(){
 /* warstwy pokrycia dla guzikow*/
 document.getElementById("guzik_1").addEventListener("click", function(){
 	pokrycie_drzew_2000.addTo(map);
+    legend_pokrycie_00.addTo(map);
     map.removeLayer(pokrycie_drzew_2010);
     map.removeLayer(zmiana_pokrycia_00_10);
+    map.removeControl(legend_zmiana_pokrycia);
 });
 
 document.getElementById("guzik_2").addEventListener("click", function(){
 	pokrycie_drzew_2010.addTo(map);
+    legend_pokrycie_00.addTo(map);
     map.removeLayer(pokrycie_drzew_2000);
     map.removeLayer(zmiana_pokrycia_00_10);
+    map.removeControl(legend_zmiana_pokrycia);
 });
 
 document.getElementById("guzik_3").addEventListener("click", function(){
 	zmiana_pokrycia_00_10.addTo(map);
+    legend_zmiana_pokrycia.addTo(map);
     map.removeLayer(pokrycie_drzew_2010);
     map.removeLayer(pokrycie_drzew_2000);
+    map.removeControl(legend_pokrycie_00);
 });
 
 /*
