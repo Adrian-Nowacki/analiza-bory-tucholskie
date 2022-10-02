@@ -376,12 +376,13 @@ html, body {
   margin-top: 30px;
   padding:  20px;
   color: #fff;
-  display: inline-flex;
+  display: block;
   font-size: 16px;
   cursor: pointer;
   width: 20%;
   height: 5%;
   font-weight: bold;
+  float:left;
 }
 
 .guzik:hover {
@@ -392,12 +393,13 @@ html, body {
   border: none;
   margin-top: 30px;
   padding: 20px;
-  display:inline-flex;
+  display:block;
   font-size: 16px;
   cursor: pointer;
   width: 20%;
   height: 5%;
   font-weight: bold;
+  float:left;
 }
 
 
