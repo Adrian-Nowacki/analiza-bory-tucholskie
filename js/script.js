@@ -195,6 +195,358 @@ getWFSgeojson().then(data=> {
 
 var sql_text = "DN<=2010"
 
+var styl = `<?xml version="1.0" encoding="UTF-8"?>
+<StyledLayerDescriptor xmlns="http://www.opengis.net/sld" xsi:schemaLocation="http://www.opengis.net/sld http://schemas.opengis.net/sld/1.1.0/StyledLayerDescriptor.xsd" xmlns:se="http://www.opengis.net/se" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1.0" xmlns:ogc="http://www.opengis.net/ogc" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <NamedLayer>
+    <se:Name>wycinki</se:Name>
+    <UserStyle>
+      <se:Name>wycinki</se:Name>
+      <se:FeatureTypeStyle>
+        <se:Rule>
+          <se:Name>2001</se:Name>
+          <se:Description>
+            <se:Title>2001</se:Title>
+          </se:Description>
+          <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
+            <ogc:PropertyIsEqualTo>
+              <ogc:PropertyName>DN</ogc:PropertyName>
+              <ogc:Literal>2001</ogc:Literal>
+            </ogc:PropertyIsEqualTo>
+          </ogc:Filter>
+          <se:PolygonSymbolizer>
+            <se:Fill>
+              <se:SvgParameter name="fill">#fef0d9</se:SvgParameter>
+            </se:Fill>
+          </se:PolygonSymbolizer>
+        </se:Rule>
+        <se:Rule>
+          <se:Name>2002</se:Name>
+          <se:Description>
+            <se:Title>2002</se:Title>
+          </se:Description>
+          <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
+            <ogc:PropertyIsEqualTo>
+              <ogc:PropertyName>DN</ogc:PropertyName>
+              <ogc:Literal>2002</ogc:Literal>
+            </ogc:PropertyIsEqualTo>
+          </ogc:Filter>
+          <se:PolygonSymbolizer>
+            <se:Fill>
+              <se:SvgParameter name="fill">#fee9c9</se:SvgParameter>
+            </se:Fill>
+          </se:PolygonSymbolizer>
+        </se:Rule>
+        <se:Rule>
+          <se:Name>2003</se:Name>
+          <se:Description>
+            <se:Title>2003</se:Title>
+          </se:Description>
+          <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
+            <ogc:PropertyIsEqualTo>
+              <ogc:PropertyName>DN</ogc:PropertyName>
+              <ogc:Literal>2003</ogc:Literal>
+            </ogc:PropertyIsEqualTo>
+          </ogc:Filter>
+          <se:PolygonSymbolizer>
+            <se:Fill>
+              <se:SvgParameter name="fill">#fee1b8</se:SvgParameter>
+            </se:Fill>
+          </se:PolygonSymbolizer>
+        </se:Rule>
+        <se:Rule>
+          <se:Name>2004</se:Name>
+          <se:Description>
+            <se:Title>2004</se:Title>
+          </se:Description>
+          <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
+            <ogc:PropertyIsEqualTo>
+              <ogc:PropertyName>DN</ogc:PropertyName>
+              <ogc:Literal>2004</ogc:Literal>
+            </ogc:PropertyIsEqualTo>
+          </ogc:Filter>
+          <se:PolygonSymbolizer>
+            <se:Fill>
+              <se:SvgParameter name="fill">#fedaa7</se:SvgParameter>
+            </se:Fill>
+          </se:PolygonSymbolizer>
+        </se:Rule>
+        <se:Rule>
+          <se:Name>2005</se:Name>
+          <se:Description>
+            <se:Title>2005</se:Title>
+          </se:Description>
+          <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
+            <ogc:PropertyIsEqualTo>
+              <ogc:PropertyName>DN</ogc:PropertyName>
+              <ogc:Literal>2005</ogc:Literal>
+            </ogc:PropertyIsEqualTo>
+          </ogc:Filter>
+          <se:PolygonSymbolizer>
+            <se:Fill>
+              <se:SvgParameter name="fill">#fed297</se:SvgParameter>
+            </se:Fill>
+          </se:PolygonSymbolizer>
+        </se:Rule>
+        <se:Rule>
+          <se:Name>2006</se:Name>
+          <se:Description>
+            <se:Title>2006</se:Title>
+          </se:Description>
+          <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
+            <ogc:PropertyIsEqualTo>
+              <ogc:PropertyName>DN</ogc:PropertyName>
+              <ogc:Literal>2006</ogc:Literal>
+            </ogc:PropertyIsEqualTo>
+          </ogc:Filter>
+          <se:PolygonSymbolizer>
+            <se:Fill>
+              <se:SvgParameter name="fill">#fdc987</se:SvgParameter>
+            </se:Fill>
+          </se:PolygonSymbolizer>
+        </se:Rule>
+        <se:Rule>
+          <se:Name>2007</se:Name>
+          <se:Description>
+            <se:Title>2007</se:Title>
+          </se:Description>
+          <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
+            <ogc:PropertyIsEqualTo>
+              <ogc:PropertyName>DN</ogc:PropertyName>
+              <ogc:Literal>2007</ogc:Literal>
+            </ogc:PropertyIsEqualTo>
+          </ogc:Filter>
+          <se:PolygonSymbolizer>
+            <se:Fill>
+              <se:SvgParameter name="fill">#fdbc7d</se:SvgParameter>
+            </se:Fill>
+          </se:PolygonSymbolizer>
+        </se:Rule>
+        <se:Rule>
+          <se:Name>2008</se:Name>
+          <se:Description>
+            <se:Title>2008</se:Title>
+          </se:Description>
+          <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
+            <ogc:PropertyIsEqualTo>
+              <ogc:PropertyName>DN</ogc:PropertyName>
+              <ogc:Literal>2008</ogc:Literal>
+            </ogc:PropertyIsEqualTo>
+          </ogc:Filter>
+          <se:PolygonSymbolizer>
+            <se:Fill>
+              <se:SvgParameter name="fill">#fdae73</se:SvgParameter>
+            </se:Fill>
+          </se:PolygonSymbolizer>
+        </se:Rule>
+        <se:Rule>
+          <se:Name>2009</se:Name>
+          <se:Description>
+            <se:Title>2009</se:Title>
+          </se:Description>
+          <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
+            <ogc:PropertyIsEqualTo>
+              <ogc:PropertyName>DN</ogc:PropertyName>
+              <ogc:Literal>2009</ogc:Literal>
+            </ogc:PropertyIsEqualTo>
+          </ogc:Filter>
+          <se:PolygonSymbolizer>
+            <se:Fill>
+              <se:SvgParameter name="fill">#fda168</se:SvgParameter>
+            </se:Fill>
+          </se:PolygonSymbolizer>
+        </se:Rule>
+        <se:Rule>
+          <se:Name>2010</se:Name>
+          <se:Description>
+            <se:Title>2010</se:Title>
+          </se:Description>
+          <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
+            <ogc:PropertyIsEqualTo>
+              <ogc:PropertyName>DN</ogc:PropertyName>
+              <ogc:Literal>2010</ogc:Literal>
+            </ogc:PropertyIsEqualTo>
+          </ogc:Filter>
+          <se:PolygonSymbolizer>
+            <se:Fill>
+              <se:SvgParameter name="fill">#fd945e</se:SvgParameter>
+            </se:Fill>
+          </se:PolygonSymbolizer>
+        </se:Rule>
+        <se:Rule>
+          <se:Name>2011</se:Name>
+          <se:Description>
+            <se:Title>2011</se:Title>
+          </se:Description>
+          <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
+            <ogc:PropertyIsEqualTo>
+              <ogc:PropertyName>DN</ogc:PropertyName>
+              <ogc:Literal>2011</ogc:Literal>
+            </ogc:PropertyIsEqualTo>
+          </ogc:Filter>
+          <se:PolygonSymbolizer>
+            <se:Fill>
+              <se:SvgParameter name="fill">#fa8655</se:SvgParameter>
+            </se:Fill>
+          </se:PolygonSymbolizer>
+        </se:Rule>
+        <se:Rule>
+          <se:Name>2012</se:Name>
+          <se:Description>
+            <se:Title>2012</se:Title>
+          </se:Description>
+          <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
+            <ogc:PropertyIsEqualTo>
+              <ogc:PropertyName>DN</ogc:PropertyName>
+              <ogc:Literal>2012</ogc:Literal>
+            </ogc:PropertyIsEqualTo>
+          </ogc:Filter>
+          <se:PolygonSymbolizer>
+            <se:Fill>
+              <se:SvgParameter name="fill">#f5784d</se:SvgParameter>
+            </se:Fill>
+          </se:PolygonSymbolizer>
+        </se:Rule>
+        <se:Rule>
+          <se:Name>2013</se:Name>
+          <se:Description>
+            <se:Title>2013</se:Title>
+          </se:Description>
+          <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
+            <ogc:PropertyIsEqualTo>
+              <ogc:PropertyName>DN</ogc:PropertyName>
+              <ogc:Literal>2013</ogc:Literal>
+            </ogc:PropertyIsEqualTo>
+          </ogc:Filter>
+          <se:PolygonSymbolizer>
+            <se:Fill>
+              <se:SvgParameter name="fill">#ef6a45</se:SvgParameter>
+            </se:Fill>
+          </se:PolygonSymbolizer>
+        </se:Rule>
+        <se:Rule>
+          <se:Name>2014</se:Name>
+          <se:Description>
+            <se:Title>2014</se:Title>
+          </se:Description>
+          <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
+            <ogc:PropertyIsEqualTo>
+              <ogc:PropertyName>DN</ogc:PropertyName>
+              <ogc:Literal>2014</ogc:Literal>
+            </ogc:PropertyIsEqualTo>
+          </ogc:Filter>
+          <se:PolygonSymbolizer>
+            <se:Fill>
+              <se:SvgParameter name="fill">#ea5b3d</se:SvgParameter>
+            </se:Fill>
+          </se:PolygonSymbolizer>
+        </se:Rule>
+        <se:Rule>
+          <se:Name>2015</se:Name>
+          <se:Description>
+            <se:Title>2015</se:Title>
+          </se:Description>
+          <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
+            <ogc:PropertyIsEqualTo>
+              <ogc:PropertyName>DN</ogc:PropertyName>
+              <ogc:Literal>2015</ogc:Literal>
+            </ogc:PropertyIsEqualTo>
+          </ogc:Filter>
+          <se:PolygonSymbolizer>
+            <se:Fill>
+              <se:SvgParameter name="fill">#e54d35</se:SvgParameter>
+            </se:Fill>
+          </se:PolygonSymbolizer>
+        </se:Rule>
+        <se:Rule>
+          <se:Name>2016</se:Name>
+          <se:Description>
+            <se:Title>2016</se:Title>
+          </se:Description>
+          <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
+            <ogc:PropertyIsEqualTo>
+              <ogc:PropertyName>DN</ogc:PropertyName>
+              <ogc:Literal>2016</ogc:Literal>
+            </ogc:PropertyIsEqualTo>
+          </ogc:Filter>
+          <se:PolygonSymbolizer>
+            <se:Fill>
+              <se:SvgParameter name="fill">#dc3e2b</se:SvgParameter>
+            </se:Fill>
+          </se:PolygonSymbolizer>
+        </se:Rule>
+        <se:Rule>
+          <se:Name>2017</se:Name>
+          <se:Description>
+            <se:Title>2017</se:Title>
+          </se:Description>
+          <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
+            <ogc:PropertyIsEqualTo>
+              <ogc:PropertyName>DN</ogc:PropertyName>
+              <ogc:Literal>2017</ogc:Literal>
+            </ogc:PropertyIsEqualTo>
+          </ogc:Filter>
+          <se:PolygonSymbolizer>
+            <se:Fill>
+              <se:SvgParameter name="fill">#d22e20</se:SvgParameter>
+            </se:Fill>
+          </se:PolygonSymbolizer>
+        </se:Rule>
+        <se:Rule>
+          <se:Name>2018</se:Name>
+          <se:Description>
+            <se:Title>2018</se:Title>
+          </se:Description>
+          <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
+            <ogc:PropertyIsEqualTo>
+              <ogc:PropertyName>DN</ogc:PropertyName>
+              <ogc:Literal>2018</ogc:Literal>
+            </ogc:PropertyIsEqualTo>
+          </ogc:Filter>
+          <se:PolygonSymbolizer>
+            <se:Fill>
+              <se:SvgParameter name="fill">#c71f15</se:SvgParameter>
+            </se:Fill>
+          </se:PolygonSymbolizer>
+        </se:Rule>
+        <se:Rule>
+          <se:Name>2019</se:Name>
+          <se:Description>
+            <se:Title>2019</se:Title>
+          </se:Description>
+          <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
+            <ogc:PropertyIsEqualTo>
+              <ogc:PropertyName>DN</ogc:PropertyName>
+              <ogc:Literal>2019</ogc:Literal>
+            </ogc:PropertyIsEqualTo>
+          </ogc:Filter>
+          <se:PolygonSymbolizer>
+            <se:Fill>
+              <se:SvgParameter name="fill">#bd0f0a</se:SvgParameter>
+            </se:Fill>
+          </se:PolygonSymbolizer>
+        </se:Rule>
+        <se:Rule>
+          <se:Name>2020</se:Name>
+          <se:Description>
+            <se:Title>2020</se:Title>
+          </se:Description>
+          <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
+            <ogc:PropertyIsEqualTo>
+              <ogc:PropertyName>DN</ogc:PropertyName>
+              <ogc:Literal>2020</ogc:Literal>
+            </ogc:PropertyIsEqualTo>
+          </ogc:Filter>
+          <se:PolygonSymbolizer>
+            <se:Fill>
+              <se:SvgParameter name="fill">#b30000</se:SvgParameter>
+            </se:Fill>
+          </se:PolygonSymbolizer>
+        </se:Rule>
+      </se:FeatureTypeStyle>
+    </UserStyle>
+  </NamedLayer>
+</StyledLayerDescriptor>
+`;
 
 var nadlesnictwa = L.tileLayer.wms(wms_service, {
     layers: 'nadlesnictwa',
@@ -213,14 +565,6 @@ var bory_tucholskie = L.tileLayer.wms(wms_service, {
 });
 
 
-var wycinki = L.tileLayer.wms(wms_service, {
-    layers: 'wycinki',
-    format: 'image/png',
-    zIndex: 10,
-    transparent: true,
-    opacity: 1,
-    cql_filter:sql_text
-})
 
 var przyrost_drzew = L.tileLayer.wms(wms_service, {
     layers: 'przyrost_drzew',
@@ -254,6 +598,233 @@ var zmiana_pokrycia_00_10 = L.tileLayer.wms(wms_service, {
     transparent: true,
     opacity: 1
 });   
+
+
+/* alternatywa dla nie działającej opcji na geoserverze z pojemnością stylów .sld*/
+
+var wycinki = L.tileLayer.wms(wms_service, {
+    layers: 'wycinki',
+    format: 'image/png',
+    zIndex: 10,
+    transparent: true,
+    opacity: 1,
+    cql_filter:sql_text
+})
+
+/*
+var loss_2001 = L.tileLayer.wms(wms_service, {
+    layers: 'wycinki',
+    format: 'image/png',
+    zIndex: 10,
+    transparent: true,
+    opacity: 1,
+    cql_filter: "DN=2001"
+});
+
+var loss_2002 = L.tileLayer.wms(wms_service, {
+    layers: 'wycinki',
+    format: 'image/png',
+    zIndex: 10,
+    transparent: true,
+    opacity: 1,
+    cql_filter: "DN=2002"
+});
+
+var loss_2003 = L.tileLayer.wms(wms_service, {
+    layers: 'wycinki',
+    format: 'image/png',
+    zIndex: 10,
+    transparent: true,
+    opacity: 1,
+    cql_filter: "DN=2003"
+});
+
+var loss_2004 = L.tileLayer.wms(wms_service, {
+    layers: 'wycinki',
+    format: 'image/png',
+    zIndex: 10,
+    transparent: true,
+    opacity: 1,
+    cql_filter: "DN=2004"
+});
+
+var loss_2005 = L.tileLayer.wms(wms_service, {
+    layers: 'wycinki',
+    format: 'image/png',
+    zIndex: 10,
+    transparent: true,
+    opacity: 1,
+    cql_filter: "DN=2005"
+});
+
+var loss_2006 = L.tileLayer.wms(wms_service, {
+    layers: 'wycinki',
+    format: 'image/png',
+    zIndex: 10,
+    transparent: true,
+    opacity: 1,
+    cql_filter: "DN=2006"
+});
+
+var loss_2007 = L.tileLayer.wms(wms_service, {
+    layers: 'wycinki',
+    format: 'image/png',
+    zIndex: 10,
+    transparent: true,
+    opacity: 1,
+    cql_filter: "DN=2007"
+});
+
+var loss_2008 = L.tileLayer.wms(wms_service, {
+    layers: 'wycinki',
+    format: 'image/png',
+    zIndex: 10,
+    transparent: true,
+    opacity: 1,
+    cql_filter: "DN=2008"
+});
+
+var loss_2009 = L.tileLayer.wms(wms_service, {
+    layers: 'wycinki',
+    format: 'image/png',
+    zIndex: 10,
+    transparent: true,
+    opacity: 1,
+    cql_filter: "DN=2009"
+});
+
+var loss_2010 = L.tileLayer.wms(wms_service, {
+    layers: 'wycinki',
+    format: 'image/png',
+    zIndex: 10,
+    transparent: true,
+    opacity: 1,
+    cql_filter: "DN=2010"
+});
+
+var loss_2011 = L.tileLayer.wms(wms_service, {
+    layers: 'wycinki',
+    format: 'image/png',
+    zIndex: 10,
+    transparent: true,
+    opacity: 1,
+    cql_filter: "DN=2011"
+});
+
+var loss_2012 = L.tileLayer.wms(wms_service, {
+    layers: 'wycinki',
+    format: 'image/png',
+    zIndex: 10,
+    transparent: true,
+    opacity: 1,
+    cql_filter: "DN=2012"
+});
+
+var loss_2013 = L.tileLayer.wms(wms_service, {
+    layers: 'wycinki',
+    format: 'image/png',
+    zIndex: 10,
+    transparent: true,
+    opacity: 1,
+    cql_filter: "DN=2013"
+});
+
+var loss_2014 = L.tileLayer.wms(wms_service, {
+    layers: 'wycinki',
+    format: 'image/png',
+    zIndex: 10,
+    transparent: true,
+    opacity: 1,
+    cql_filter: "DN=2014"
+});
+
+var loss_2015 = L.tileLayer.wms(wms_service, {
+    layers: 'wycinki',
+    format: 'image/png',
+    zIndex: 10,
+    transparent: true,
+    opacity: 1,
+    cql_filter: "DN=2015"
+});
+
+var loss_2016 = L.tileLayer.wms(wms_service, {
+    layers: 'wycinki',
+    format: 'image/png',
+    zIndex: 10,
+    transparent: true,
+    opacity: 1,
+    cql_filter: "DN=2016"
+});
+
+var loss_2017 = L.tileLayer.wms(wms_service, {
+    layers: 'wycinki',
+    format: 'image/png',
+    zIndex: 10,
+    transparent: true,
+    opacity: 1,
+    cql_filter: "DN=2017"
+});
+
+var loss_2018 = L.tileLayer.wms(wms_service, {
+    layers: 'wycinki',
+    format: 'image/png',
+    zIndex: 10,
+    transparent: true,
+    opacity: 1,
+    cql_filter: "DN=2018"
+});
+
+var loss_2019 = L.tileLayer.wms(wms_service, {
+    layers: 'wycinki',
+    format: 'image/png',
+    zIndex: 10,
+    transparent: true,
+    opacity: 1,
+    cql_filter: "DN=2019"
+});
+
+var loss_2020 = L.tileLayer.wms(wms_service, {
+    layers: 'wycinki',
+    format: 'image/png',
+    zIndex: 10,
+    transparent: true,
+    opacity: 1,
+    cql_filter: "DN=2020"
+});
+
+var wycinki = L.layerGroup([loss_2001, loss_2002, loss_2003, loss_2004, loss_2005, loss_2006, loss_2007, loss_2008, 
+    loss_2009, loss_2010, loss_2011, loss_2012, loss_2013, loss_2014, loss_2015, loss_2016, loss_2017, loss_2018, 
+    loss_2019, loss_2020]);
+
+var rok_2001 = L.layerGroup([loss_2001]);
+var rok_2002 = L.layerGroup([loss_2001, loss_2002]);
+var rok_2003 = L.layerGroup([loss_2001, loss_2002, loss_2003]);
+var rok_2004 = L.layerGroup([loss_2001, loss_2002, loss_2003, loss_2004]);
+var rok_2005 = L.layerGroup([loss_2001, loss_2002, loss_2003, loss_2004, loss_2005]);
+var rok_2006 = L.layerGroup([loss_2001, loss_2002, loss_2003, loss_2004, loss_2005, loss_2006]);
+var rok_2007 = L.layerGroup([loss_2001, loss_2002, loss_2003, loss_2004, loss_2005, loss_2006, loss_2007]);
+var rok_2008 = L.layerGroup([loss_2001, loss_2002, loss_2003, loss_2004, loss_2005, loss_2006, loss_2007, loss_2008]);
+var rok_2009 = L.layerGroup([loss_2001, loss_2002, loss_2003, loss_2004, loss_2005, loss_2006, loss_2007, loss_2008, loss_2009]);
+var rok_2010 = L.layerGroup([loss_2001, loss_2002, loss_2003, loss_2004, loss_2005, loss_2006, loss_2007, loss_2008, loss_2009, 
+    loss_2010]);
+var rok_2011 = L.layerGroup([loss_2001, loss_2002, loss_2003, loss_2004, loss_2005, loss_2006, loss_2007, loss_2008, loss_2009, 
+    loss_2010, loss_2011]);
+var rok_2012 = L.layerGroup([loss_2001, loss_2002, loss_2003, loss_2004, loss_2005, loss_2006, loss_2007, loss_2008, loss_2009,
+    loss_2010, loss_2011, loss_2012]);
+var rok_2013 = L.layerGroup([loss_2001, loss_2002, loss_2003, loss_2004, loss_2005, loss_2006, loss_2007, loss_2008, loss_2009,
+    loss_2010, loss_2011, loss_2012, loss_2013]);
+var rok_2013 = L.layerGroup([loss_2001, loss_2002, loss_2003, loss_2004, loss_2005, loss_2006, loss_2007, loss_2008, loss_2009,
+    loss_2010, loss_2011, loss_2012, loss_2013]);
+var rok_2013 = L.layerGroup([loss_2001, loss_2002, loss_2003, loss_2004, loss_2005, loss_2006, loss_2007, loss_2008, loss_2009,
+    loss_2010, loss_2011, loss_2012, loss_2013]);
+
+
+*/
+
+
+
+
+
 
 
 var baseMaps = {
@@ -414,12 +985,20 @@ function showSliderValue() {
 
 rangeSlider.addEventListener("input", info, false);
 
+
+
+/* alternatywa dla nie działającej opcji na geoserverze z pojemnością stylów .sld*/
+
 function info(){
     for (let i = 2000; i <= 2020; i++){
         wycinki.setParams({CQL_FILTER:"DN <=" + rangeSlider.value})
 
     }
 }
+
+
+
+
 
 /*var skala = */ 
 L.control.scale({metric: true,
@@ -562,6 +1141,7 @@ $(document).ready(function(){
 $(document).ready(function(){
 	$(".opacity-slider").on('input', function(value){
 	$(".imageopacity").html(this.value + "%");
+    
 	wycinki.setOpacity(this.value / 100);
     pokrycie_drzew_2000.setOpacity(this.value / 100);
     pokrycie_drzew_2010.setOpacity(this.value / 100);
