@@ -372,8 +372,8 @@ html, body {
   transition-duration: 0.4s;
   cursor:pointer;
   background-color: #588c3a;
-  border: #222 solid;
-  margin-top: 30px;
+  border: 1px #222 solid;
+  margin-top: 50px;
   padding:  20px;
   color: #fff;
   display: block;
@@ -391,7 +391,7 @@ html, body {
   color: #222;
   border: #222 solid;
   border: none;
-  margin-top: 30px;
+  margin-top: 50px;
   padding: 20px;
   display:block;
   font-size: 16px;
@@ -402,6 +402,14 @@ html, body {
   margin: 5px;
 }
 
+#guzik_1{
+  margin-left: 20px;
+}
+
+.logo{
+  padding-top: 5%;
+  padding-left: 25% ;
+}
 
 sup{
   font-size:70%;
@@ -439,7 +447,7 @@ table td#komorka_zespoly {
 	width:330px;
 	height:100px;
 	text-align:center;
-	margin-top:40px;
+	margin-top:50px;
 }
 
 .opacity-slider {
@@ -470,4 +478,25 @@ table td#komorka_zespoly {
 	height: 25px;
 	background: #588c3a;
 	cursor: pointer;
+  }
+
+  table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  th, td {
+    text-align: left;
+    padding: 8px;
+  }
+  tr:nth-child(odd) {background-color: #f2f2f2;}
+
+  #wylesienie_tabela{
+    background-color:#CAE8D2!important;
+  }
+
+  .lorem{
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
   }

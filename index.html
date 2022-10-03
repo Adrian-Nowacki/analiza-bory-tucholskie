@@ -46,7 +46,7 @@
 
         <ul role="tablist">
             <li><a href="#warstwy" role="tab"><img class = "ikonka" src="png/layers.png" width = "25px" height = "25px"></img></a></src><i class="fa fa-gear"></i></a></li>
-            <li><a href="#settings" role="tab"><i class="fa fa-gear"></i></a></li>
+            <li><a href="#autorzy" role="tab"><img class = "ikonka" src="png/group.png" width = "25px" height = "25px"></img></a></src><i class="fa fa-gear"></i></a></li>
         </ul>
     </div>
 
@@ -64,12 +64,29 @@
         <div class="sidebar-pane" id="dane">
             <h1 class="sidebar-header">Dane nadleśnictw<span class="sidebar-close"><i class="fa fa-caret-right"></i></span></h1>
             <p class="lorem">
-              Dane ogólne dla Borów Tucholskich:</br></br>
-            <b>Powierzchnia wycinek: </b>49 859,63 ha</br>
-            <b>Powierzchnia nadleśnictwa: </b>322 952,86 ha</br>
-            <b>% pokrycia: </b>65,5%</br>
-            <b>% straty: </b>15,4%</br>
-            <b>% przyrostu: </b>3%</br>
+              <b>Dane ogólne dla Borów Tucholskich:</b></br></br>
+              <div><table>
+                <tr>
+                  <td><b>Powierzchnia wycinek:</b></td>
+                  <td>49 859,63 ha</td>
+                </tr>
+                <tr>
+                  <td><b>Powierzchnia nadleśnictwa:</b></td>
+                  <td>322 952,86 ha</td>
+                </tr>
+                <tr>
+                  <td><b>% pokrycia:</b></td>
+                  <td>65,5%</td>
+                </tr>
+                <tr>
+                  <td><b>% straty:</b></td>
+                  <td>15,4%</td>
+                </tr>
+                <tr>
+                  <td><b>% przyrostu:</b></td>
+                  <td>3%</td>
+                </tr>
+              </table></div>
             </p>
         </div>
         
@@ -88,19 +105,14 @@
                   <label id = "checkbox-text" for="check_1">Granica Borów Tucholskich</label>
                 </div>
 
-               <!-- <div class = "suwak">
+               <div class = "suwak">
                   <p> Nieprzeźroczystość: <span id = "imageopacity_1" class = "imageopacity">100%</span></p>
                   <input type = "range" id = "opacity_slider_1" class = "opacity-slider" min = '0', max = '100', value = '100', step = '1'>
-                </div>-->
+                </div>
 
                 <div  id = "guzik_1"  class="guzik">2000</div>
                 <div  id = "guzik_2" class="guzik">2010</div>
                 <div  id = "guzik_3" class="guzik">zmiana pokrycia</div>
-
-                <div class = "suwak">
-                  <p> Nieprzeźroczystość: <span id = "imageopacity_1" class = "imageopacity">100%</span></p>
-                  <input type = "range" id = "opacity_slider_1" class = "opacity-slider" min = '0', max = '100', value = '100', step = '1'>
-                </div>
               </div>
         </div>
 
@@ -120,8 +132,19 @@
                 </div>	
             </div>
             <p id = "wylesienie_statystyki">
-              <b>Łącznie od 2000 roku: </b>10 796,84 ha </br></br>
-              <b>Rok 2010: </b> 1831,46 ha
+              <div>
+                <table>
+                  <tr id="wylesienie_tabela">
+                    <td><b>Łącznie od 2000 roku: </b></td>
+                    <td>10 796,84 ha</td>
+                  </tr>
+                  <tr>
+                    <td><b>Rok 2010: </b></td>
+                    <td>1831,46 ha</td>
+                  </tr>
+                </table>
+              </div>
+               
             </p>
             
         </div>
@@ -178,8 +201,11 @@
 
         </div>
 
-        <div class="sidebar-pane" id="settings">
-            <h1 class="sidebar-header">Settings<span class="sidebar-close"><i class="fa fa-caret-right"></i></span></h1>
+        <div class="sidebar-pane" id="autorzy">
+            <h1 class="sidebar-header">Autorzy<span class="sidebar-close"><i class="fa fa-caret-right"></i></span></h1>
+        <div>
+          <a href="https://sekcjageoinformacji.amu.edu.pl/" target="_blank"><img class="logo" src = "png/logo3.png" width="180px" height="200px"></a>
+        </div>
         </div>
     </div>
 </div>
