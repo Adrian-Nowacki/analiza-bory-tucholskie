@@ -520,3 +520,17 @@ table td#komorka_zespoly {
     font-size: 18px;
     font-weight: bold;
   }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+}
+::-webkit-scrollbar-thumb {
+    background-image: -webkit-gradient(linear, left bottom, left top, 
+						color-stop(0.28, #588c3a), 
+						color-stop(0.60, #8db675 ), 
+						color-stop(0.86, #d9f5c9));
+    /* border-radius: 30%; */
+}
+::-webkit-scrollbar-track {
+    display: none;
+}
