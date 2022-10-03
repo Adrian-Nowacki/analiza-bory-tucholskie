@@ -364,6 +364,26 @@ html, body {
       right:unset!important;
     }
 
+/*slider lat*/
+.container {
+  bottom: 50px;
+  left: 50px;
+}
+
+.box-minmax {
+  margin-top: 15px;
+  width: 410px;
+}
+
+.box-minmax span:first-child {
+  margin-left: 10px;
+}
+
+.rs-range {
+  margin-top: 29px;
+  width: 350px;
+}
+
 }
 
 
