@@ -168,8 +168,8 @@ onEachFeature: function (feature, layer){
 
 
 
-var wichura_2012_layer = L.geoJson(wichura_2012, {color: 'black', fillColor: '#FF0000', fillOpacity: 0.3, weight: 1, pane: 'warstwy'});
-wichura_2012_layer.addTo(map);
+var wichura_2017_layer = L.geoJson("https://raw.githubusercontent.com/Adrian-Nowacki/analiza-bory-tucholskie/main/poligony/geojson/traba_powietrzna_2017.json", {color: 'black', fillColor: '#FF0000', fillOpacity: 0.3, weight: 1, pane: 'warstwy'});
+wichura_2017_layer.addTo(map);
 /*
 getWFSgeojson().then(data=> {
     var wfsPolylayer = L.geoJSON([data], {
