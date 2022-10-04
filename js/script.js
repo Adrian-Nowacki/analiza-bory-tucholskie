@@ -163,6 +163,13 @@ onEachFeature: function (feature, layer){
     });
 }});
 
+
+
+
+
+
+var traba= L.geoJson("poligony/geojson/traba_powietrzna_2017.geojson", {color: 'black', fillColor: '#FF0000', fillOpacity: 0.3, weight: 1, pane: 'warstwy'});
+traba.addTo(map);
 /*
 getWFSgeojson().then(data=> {
     var wfsPolylayer = L.geoJSON([data], {

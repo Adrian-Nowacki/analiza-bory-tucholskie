@@ -428,10 +428,11 @@ html, body {
 
 #logo{
   padding-top: 5%;
-  padding-left: 25%;
   -webkit-filter: drop-shadow(3px 3px 8px rgba(22, 22, 22, 0.7));
   filter: drop-shadow(3px 3px 8px rgba(22, 22, 22, 0.7));
+  margin-bottom:10px;
 }
+
 sup{
   font-size:70%;
 }
@@ -534,4 +535,53 @@ table td#komorka_zespoly {
 }
 ::-webkit-scrollbar-track {
     display: none;
+}
+#logo_div{
+  font-size:14px;
+  text-align:center;
+	height:260px;
+	display:block;
+}
+#media{
+  text-align:center;
+}
+#link{
+  text-align: center;
+  margin-right:40px;
+  -webkit-transition: .5s ease;
+  -webkit-filter: drop-shadow(3px 3px 8px rgba(22, 22, 22, 0.4));
+  filter: drop-shadow(3px 3px 8px rgba(22, 22, 22, 0.4);
+}
+#link:hover {
+  -webkit-filter: grayscale(0.5);
+  filter: grayscale(0.5);
+}
+#git_link{
+  text-align: center;
+  -webkit-transition: .5s ease;
+  -webkit-filter: drop-shadow(3px 3px 8px rgba(22, 22, 22, 0.4));
+  filter: drop-shadow(3px 3px 8px rgba(22, 22, 22, 0.4));
+}
+#git_link:hover {
+  -webkit-filter: brightness(450%);
+  filter: brightness(450%);
+}
+
+#logo-facebook {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#logo-facebook:hover{
+  filter: blur(2px);
+  cursor:pointer;
+  transition: 0.3s;
+}
+a:link {
+  text-decoration: none;
+}
+
+a:visited {
+  text-decoration: none;
 }
