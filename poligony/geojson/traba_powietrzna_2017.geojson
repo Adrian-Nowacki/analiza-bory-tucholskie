@@ -1,4 +1,4 @@
-{
+var wichura_2017 = {
 "type": "FeatureCollection",
 "name": "traba_powietrzna_2017",
 "crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
