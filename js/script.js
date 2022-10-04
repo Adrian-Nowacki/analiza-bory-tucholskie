@@ -484,8 +484,8 @@ var powierzchnia = 0;
 function showLayerInfo() {
     
     for(let i = rangeSlider.min - 1; i <= rangeSlider.max - 20; i++){
-        document.getElementById("wylesienie_statystyki").innerHTML = "<b>Łącznie od 2000 roku: </b>" + defoarea_sumyear[rangeSlider.value - i] + " ha</br></br>"
-        + "<b>Rok " + rangeSlider.value + ": </b>" + defoarea_eachyear[rangeSlider.value - i] + " ha";
+        document.getElementById("wylesienie_stats").innerHTML = "<tr id='wylesienie_tabela'><td><b>Łącznie od 2000 roku: </b></td><td>" + defoarea_sumyear[rangeSlider.value - i] + " ha</td></tr><tr>"
+        + "<td><b>Rok " + rangeSlider.value + ": </b></td><td>" + defoarea_eachyear[rangeSlider.value - i] + " ha</td></tr>";
         
     }
   

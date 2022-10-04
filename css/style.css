@@ -548,7 +548,7 @@ table td#komorka_zespoly {
 #link{
   text-align: center;
   margin-right:40px;
-  -webkit-transition: .5s ease;
+  transition: .5s ease;
   -webkit-filter: drop-shadow(3px 3px 8px rgba(22, 22, 22, 0.4));
   filter: drop-shadow(3px 3px 8px rgba(22, 22, 22, 0.4));
 }
@@ -558,7 +558,7 @@ table td#komorka_zespoly {
 }
 #git_link{
   text-align: center;
-  -webkit-transition: .5s ease;
+  transition: .5s ease;
   -webkit-filter: drop-shadow(3px 3px 8px rgba(22, 22, 22, 0.4));
   filter: drop-shadow(3px 3px 8px rgba(22, 22, 22, 0.4));
 }
