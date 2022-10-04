@@ -165,6 +165,19 @@ onEachFeature: function (feature, layer){
 
 
 
+var nadlesnictwa_button = new L.GeoJSON.AJAX("https://poznan-gis.pl/geoserver/deforestacja_bory_tucholskie/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=deforestacja_bory_tucholskie%3Anadlesnictwa&outputFormat=application/json",{onEachFeature:function forEachFeature (feature,layer){
+}, style:{
+  fill: '#444444',
+  weight: 2,
+  opacity: 0.8,
+  color: '#222222',
+  dashArray: '4',
+  fillOpacity: 0.2
+},
+onEachFeature: function (feature, layer){
+    layer.bindPopup('<caption>'+feature.properties.ins_name+'</caption>')
+}});
+
 
 
 
@@ -178,7 +191,7 @@ var wichura_2017= new L.GeoJSON.AJAX("https://raw.githubusercontent.com/Adrian-N
       dashArray: '4',
       fillOpacity: 0.7
   }
-}).addTo(map);
+});
 
 var wichura_2012= new L.GeoJSON.AJAX("https://raw.githubusercontent.com/Adrian-Nowacki/analiza-bory-tucholskie/main/poligony/geojson/wichura_2012.geojson",{onEachFeature:function forEachFeature (feature,layer){
 }, style:{
@@ -189,25 +202,25 @@ var wichura_2012= new L.GeoJSON.AJAX("https://raw.githubusercontent.com/Adrian-N
   dashArray: '4',
   fillOpacity: 0.7
 }
-}).addTo(map);
+});
 
 
 
-var marker = new L.marker([53.930813, 17.712754], { opacity: 0 }); //opacity may be set to zero
-marker.bindTooltip("Wichura w 2017 r.", {
+var marker_2017 = new L.marker([53.930813, 17.712754], { opacity: 0 }); //opacity may be set to zero
+marker_2017.bindTooltip("Wichura w 2017 r.", {
   permanent: true, 
   className: "my-label",
   fill:"#222222", 
   offset: [0, 0] });
-marker.addTo(map);
 
 
-var marker = new L.marker([53.638, 18.319], { opacity: 0 }); //opacity may be set to zero
-marker.bindTooltip("Trąba powietrzna w 2012 r.", {
+var marker_2012 = new L.marker([53.638, 18.319], { opacity: 0 }); //opacity may be set to zero
+marker_2012.bindTooltip("Trąba powietrzna w 2012 r.", {
   permanent: true, 
   className: "my-label", 
   offset: [0, 0] });
-marker.addTo(map);
+
+var wichury = L.layerGroup([wichura_2012, wichura_2017, marker_2012, marker_2017]);
 /*
 getWFSgeojson().then(data=> {
     var wfsPolylayer = L.geoJSON([data], {
@@ -302,228 +315,9 @@ var wycinki = L.tileLayer.wms(wms_service, {
     transparent: true,
     opacity: 1,
     cql_filter:sql_text
-})
-
-/*
-var loss_2001 = L.tileLayer.wms(wms_service, {
-    layers: 'wycinki',
-    format: 'image/png',
-    zIndex: 10,
-    transparent: true,
-    opacity: 1,
-    cql_filter: "DN=2001"
 });
 
-var loss_2002 = L.tileLayer.wms(wms_service, {
-    layers: 'wycinki',
-    format: 'image/png',
-    zIndex: 10,
-    transparent: true,
-    opacity: 1,
-    cql_filter: "DN=2002"
-});
 
-var loss_2003 = L.tileLayer.wms(wms_service, {
-    layers: 'wycinki',
-    format: 'image/png',
-    zIndex: 10,
-    transparent: true,
-    opacity: 1,
-    cql_filter: "DN=2003"
-});
-
-var loss_2004 = L.tileLayer.wms(wms_service, {
-    layers: 'wycinki',
-    format: 'image/png',
-    zIndex: 10,
-    transparent: true,
-    opacity: 1,
-    cql_filter: "DN=2004"
-});
-
-var loss_2005 = L.tileLayer.wms(wms_service, {
-    layers: 'wycinki',
-    format: 'image/png',
-    zIndex: 10,
-    transparent: true,
-    opacity: 1,
-    cql_filter: "DN=2005"
-});
-
-var loss_2006 = L.tileLayer.wms(wms_service, {
-    layers: 'wycinki',
-    format: 'image/png',
-    zIndex: 10,
-    transparent: true,
-    opacity: 1,
-    cql_filter: "DN=2006"
-});
-
-var loss_2007 = L.tileLayer.wms(wms_service, {
-    layers: 'wycinki',
-    format: 'image/png',
-    zIndex: 10,
-    transparent: true,
-    opacity: 1,
-    cql_filter: "DN=2007"
-});
-
-var loss_2008 = L.tileLayer.wms(wms_service, {
-    layers: 'wycinki',
-    format: 'image/png',
-    zIndex: 10,
-    transparent: true,
-    opacity: 1,
-    cql_filter: "DN=2008"
-});
-
-var loss_2009 = L.tileLayer.wms(wms_service, {
-    layers: 'wycinki',
-    format: 'image/png',
-    zIndex: 10,
-    transparent: true,
-    opacity: 1,
-    cql_filter: "DN=2009"
-});
-
-var loss_2010 = L.tileLayer.wms(wms_service, {
-    layers: 'wycinki',
-    format: 'image/png',
-    zIndex: 10,
-    transparent: true,
-    opacity: 1,
-    cql_filter: "DN=2010"
-});
-
-var loss_2011 = L.tileLayer.wms(wms_service, {
-    layers: 'wycinki',
-    format: 'image/png',
-    zIndex: 10,
-    transparent: true,
-    opacity: 1,
-    cql_filter: "DN=2011"
-});
-
-var loss_2012 = L.tileLayer.wms(wms_service, {
-    layers: 'wycinki',
-    format: 'image/png',
-    zIndex: 10,
-    transparent: true,
-    opacity: 1,
-    cql_filter: "DN=2012"
-});
-
-var loss_2013 = L.tileLayer.wms(wms_service, {
-    layers: 'wycinki',
-    format: 'image/png',
-    zIndex: 10,
-    transparent: true,
-    opacity: 1,
-    cql_filter: "DN=2013"
-});
-
-var loss_2014 = L.tileLayer.wms(wms_service, {
-    layers: 'wycinki',
-    format: 'image/png',
-    zIndex: 10,
-    transparent: true,
-    opacity: 1,
-    cql_filter: "DN=2014"
-});
-
-var loss_2015 = L.tileLayer.wms(wms_service, {
-    layers: 'wycinki',
-    format: 'image/png',
-    zIndex: 10,
-    transparent: true,
-    opacity: 1,
-    cql_filter: "DN=2015"
-});
-
-var loss_2016 = L.tileLayer.wms(wms_service, {
-    layers: 'wycinki',
-    format: 'image/png',
-    zIndex: 10,
-    transparent: true,
-    opacity: 1,
-    cql_filter: "DN=2016"
-});
-
-var loss_2017 = L.tileLayer.wms(wms_service, {
-    layers: 'wycinki',
-    format: 'image/png',
-    zIndex: 10,
-    transparent: true,
-    opacity: 1,
-    cql_filter: "DN=2017"
-});
-
-var loss_2018 = L.tileLayer.wms(wms_service, {
-    layers: 'wycinki',
-    format: 'image/png',
-    zIndex: 10,
-    transparent: true,
-    opacity: 1,
-    cql_filter: "DN=2018"
-});
-
-var loss_2019 = L.tileLayer.wms(wms_service, {
-    layers: 'wycinki',
-    format: 'image/png',
-    zIndex: 10,
-    transparent: true,
-    opacity: 1,
-    cql_filter: "DN=2019"
-});
-
-var loss_2020 = L.tileLayer.wms(wms_service, {
-    layers: 'wycinki',
-    format: 'image/png',
-    zIndex: 10,
-    transparent: true,
-    opacity: 1,
-    cql_filter: "DN=2020"
-});
-
-var wycinki = L.layerGroup([loss_2001, loss_2002, loss_2003, loss_2004, loss_2005, loss_2006, loss_2007, loss_2008, 
-    loss_2009, loss_2010, loss_2011, loss_2012, loss_2013, loss_2014, loss_2015, loss_2016, loss_2017, loss_2018, 
-    loss_2019, loss_2020]);
-
-var rok_2001 = L.layerGroup([loss_2001]);
-var rok_2002 = L.layerGroup([loss_2001, loss_2002]);
-var rok_2003 = L.layerGroup([loss_2001, loss_2002, loss_2003]);
-var rok_2004 = L.layerGroup([loss_2001, loss_2002, loss_2003, loss_2004]);
-var rok_2005 = L.layerGroup([loss_2001, loss_2002, loss_2003, loss_2004, loss_2005]);
-var rok_2006 = L.layerGroup([loss_2001, loss_2002, loss_2003, loss_2004, loss_2005, loss_2006]);
-var rok_2007 = L.layerGroup([loss_2001, loss_2002, loss_2003, loss_2004, loss_2005, loss_2006, loss_2007]);
-var rok_2008 = L.layerGroup([loss_2001, loss_2002, loss_2003, loss_2004, loss_2005, loss_2006, loss_2007, loss_2008]);
-var rok_2009 = L.layerGroup([loss_2001, loss_2002, loss_2003, loss_2004, loss_2005, loss_2006, loss_2007, loss_2008, loss_2009]);
-var rok_2010 = L.layerGroup([loss_2001, loss_2002, loss_2003, loss_2004, loss_2005, loss_2006, loss_2007, loss_2008, loss_2009, 
-    loss_2010]);
-var rok_2011 = L.layerGroup([loss_2001, loss_2002, loss_2003, loss_2004, loss_2005, loss_2006, loss_2007, loss_2008, loss_2009, 
-    loss_2010, loss_2011]);
-var rok_2012 = L.layerGroup([loss_2001, loss_2002, loss_2003, loss_2004, loss_2005, loss_2006, loss_2007, loss_2008, loss_2009,
-    loss_2010, loss_2011, loss_2012]);
-var rok_2013 = L.layerGroup([loss_2001, loss_2002, loss_2003, loss_2004, loss_2005, loss_2006, loss_2007, loss_2008, loss_2009,
-    loss_2010, loss_2011, loss_2012, loss_2013]);
-var rok_2013 = L.layerGroup([loss_2001, loss_2002, loss_2003, loss_2004, loss_2005, loss_2006, loss_2007, loss_2008, loss_2009,
-    loss_2010, loss_2011, loss_2012, loss_2013]);
-var rok_2013 = L.layerGroup([loss_2001, loss_2002, loss_2003, loss_2004, loss_2005, loss_2006, loss_2007, loss_2008, loss_2009,
-    loss_2010, loss_2011, loss_2012, loss_2013]);
-
-
-*/
-
-
-
-
-
-
-
-var baseMaps = {
-    "OpenStreetMap": openstreetmap,
-    "Mapbox": mapbox
-};
 
 document.getElementById("warstwa_dane").addEventListener("click", function () {
 	if(!(map.hasLayer(geojsonLayer))){
@@ -535,7 +329,8 @@ document.getElementById("warstwa_dane").addEventListener("click", function () {
         map.removeLayer(zmiana_pokrycia_00_10);
         map.removeLayer(pokrycie_drzew_2010);
         map.removeLayer(pokrycie_drzew_2000);
-		geojsonLayer.addTo(map);
+        map.removeLayer(wichury);
+		    geojsonLayer.addTo(map);
         legend_nadlesnictwa.addTo(map);
         map.removeControl(legend_pokrycie_00);
         map.removeControl(legend_zmiana_pokrycia);
@@ -554,6 +349,7 @@ document.getElementById("warstwa_dane").addEventListener("click", function () {
             map.removeLayer(geojsonLayer);
             map.removeLayer(wycinki); 
             map.removeLayer(przyrost_drzew);
+            map.removeLayer(wichury);
             $("#slider-container").css("display", "none");
             $(".ikona_tab").css("background-color", "#588c3a");
             $("#warstwa_pokrycie").css("background-color", "#ffffff");
@@ -574,7 +370,8 @@ document.getElementById("warstwa_wylesienie").addEventListener("click", function
         map.removeLayer(pokrycie_drzew_2000);
         map.removeLayer(geojsonLayer);
         map.removeLayer(przyrost_drzew);
-		wycinki.addTo(map);
+        map.removeLayer(wichury);
+		    wycinki.addTo(map);
         $(".ikona_tab").css("background-color", "#588c3a");
          $("#warstwa_wylesienie").css("background-color", "#ffffff");
 	}});
@@ -594,6 +391,7 @@ document.getElementById("warstwa_przyrost").addEventListener("click", function (
         map.removeLayer(pokrycie_drzew_2000);
         map.removeLayer(wycinki); 
         map.removeLayer(geojsonLayer);
+        map.removeLayer(wichury);
         $("#slider-container").css("display", "none");
 		
         $(".ikona_tab").css("background-color", "#588c3a");
@@ -602,12 +400,21 @@ document.getElementById("warstwa_przyrost").addEventListener("click", function (
 
 
 document.getElementById("warstwa_tornado").addEventListener("click", function () {
-	if(!(map.hasLayer())){
-        $("#warstwa_tornado").css("background-color", "#ffffff");
-	}
-	else if(map.hasLayer()){
+	if(!(map.hasLayer(wichury))){
+        map.removeControl(legend_nadlesnictwa);
+        map.removeControl(legend_pokrycie_00);
+        map.removeControl(legend_zmiana_pokrycia);
+        map.removeLayer(zmiana_pokrycia_00_10);
+        map.removeLayer(pokrycie_drzew_2010);
+        map.removeLayer(pokrycie_drzew_2000);
+        map.removeLayer(geojsonLayer);
+        map.removeLayer(przyrost_drzew);
+        map.removeLayer(wycinki);
+		    wichury.addTo(map);
+        $("#slider-container").css("display", "none");
         $(".ikona_tab").css("background-color", "#588c3a");
-}});
+        $("#warstwa_tornado").css("background-color", "#ffffff");
+	}});
 
 
 
@@ -616,18 +423,32 @@ $(".checkbox_granica").change(function(){
     if(!(map.hasLayer(bory_tucholskie))){
         map.addLayer(bory_tucholskie)
     }
-
     else{
         map.removeLayer(bory_tucholskie)
+    }
+  });
+
+$(".checkbox_nadlesnictwa").change(function(){
+    if(!(map.hasLayer(nadlesnictwa_button))){
+        map.addLayer(nadlesnictwa_button)
+    }
+    else{
+        map.removeLayer(nadlesnictwa_button)
     }
   });
 
  
   $(".ikona_tab").bind("click", function () {
     map.removeLayer(bory_tucholskie);
+    map.removeLayer(nadlesnictwa_button);
     document.getElementById("check_1").checked = false;
     document.getElementById("check_2").checked = false;
     document.getElementById("check_3").checked = false;
+    document.getElementById("check_4").checked = false;
+    document.getElementById("check_nadlesnictwo_1").checked = false;
+    document.getElementById("check_nadlesnictwo_2").checked = false;
+    document.getElementById("check_nadlesnictwo_3").checked = false;
+    document.getElementById("check_nadlesnictwo_4").checked = false;
   });
   
 
