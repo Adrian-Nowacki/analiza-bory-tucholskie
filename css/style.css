@@ -550,7 +550,7 @@ table td#komorka_zespoly {
   margin-right:40px;
   -webkit-transition: .5s ease;
   -webkit-filter: drop-shadow(3px 3px 8px rgba(22, 22, 22, 0.4));
-  filter: drop-shadow(3px 3px 8px rgba(22, 22, 22, 0.4);
+  filter: drop-shadow(3px 3px 8px rgba(22, 22, 22, 0.4));
 }
 #link:hover {
   -webkit-filter: grayscale(0.5);
