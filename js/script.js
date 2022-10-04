@@ -178,7 +178,6 @@ var wichura_2017= new L.GeoJSON.AJAX("https://raw.githubusercontent.com/Adrian-N
       dashArray: '4',
       fillOpacity: 0.7
   }
-    
 }).addTo(map);
 
 var wichura_2012= new L.GeoJSON.AJAX("https://raw.githubusercontent.com/Adrian-Nowacki/analiza-bory-tucholskie/main/poligony/geojson/wichura_2012.geojson",{onEachFeature:function forEachFeature (feature,layer){
@@ -190,9 +189,25 @@ var wichura_2012= new L.GeoJSON.AJAX("https://raw.githubusercontent.com/Adrian-N
   dashArray: '4',
   fillOpacity: 0.7
 }
-    
 }).addTo(map);
 
+
+
+var marker = new L.marker([53.930813, 17.712754], { opacity: 0 }); //opacity may be set to zero
+marker.bindTooltip("Wichura w 2017 r.", {
+  permanent: true, 
+  className: "my-label",
+  fill:"#222222", 
+  offset: [0, 0] });
+marker.addTo(map);
+
+
+var marker = new L.marker([53.638, 18.319], { opacity: 0 }); //opacity may be set to zero
+marker.bindTooltip("Trąba powietrzna w 2012 r.", {
+  permanent: true, 
+  className: "my-label", 
+  offset: [0, 0] });
+marker.addTo(map);
 /*
 getWFSgeojson().then(data=> {
     var wfsPolylayer = L.geoJSON([data], {
