@@ -1,9 +1,9 @@
 var map = L.map( 'map', {
-    center: [53.85, 17.5],
-    minZoom: 7,
-	maxZoom: 25,
-    zoom: 9.7,
-	zoomSnap:0.001,
+  center: [53.85, 17.5],
+  minZoom: 7,
+  maxZoom: 25,
+  zoom: 9.7,
+  zoomSnap:0.001,
 });
 
 var openstreetmap = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -11,7 +11,7 @@ var openstreetmap = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.
 })
 
 var mapbox = L.tileLayer('https://api.mapbox.com/styles/v1/adryanque/cl3d4aqvh002114nwim5raj6p/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoiYWRyeWFucXVlIiwiYSI6ImNrZDk5bzd3YTAyMTkycG16MnVqeDJtOTEifQ.7tl32VrqOcLSfXMTj2X-YA', {
-    attribution: "© <a href='https://www.mapbox.com/about/maps/'>Mapbox</a> © <a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a> <strong><a href='https://www.mapbox.com/map-feedback/' target='_blank'>Improve this map</a></strong>"
+  attribution: "© <a href='https://www.mapbox.com/about/maps/'>Mapbox</a> © <a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a> <strong><a href='https://www.mapbox.com/map-feedback/' target='_blank'>Improve this map</a></strong>"
 }).addTo(map);
 
 var satelita = L.tileLayer('https://api.mapbox.com/styles/v1/adryanque/ckqqyye3r4st018letzv7n099/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoiYWRyeWFucXVlIiwiYSI6ImNrZDk5bzd3YTAyMTkycG16MnVqeDJtOTEifQ.7tl32VrqOcLSfXMTj2X-YA', {
@@ -21,6 +21,14 @@ var satelita = L.tileLayer('https://api.mapbox.com/styles/v1/adryanque/ckqqyye3r
 var wms_service = "https://poznan-gis.pl/geoserver/wms"
 var wfs_service = "https://poznan-gis.pl/geoserver/ows"
 var wfs_service_url = "https://poznan-gis.pl/geoserver/deforestacja_bory_tucholskie/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=deforestacja_bory_tucholskie%3Anadlesnictwa&outputFormat=application/json"
+
+
+
+var magnifiedTiles = L.tileLayer('https://api.mapbox.com/styles/v1/adryanque/cl3d4aqvh002114nwim5raj6p/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoiYWRyeWFucXVlIiwiYSI6ImNrZDk5bzd3YTAyMTkycG16MnVqeDJtOTEifQ.7tl32VrqOcLSfXMTj2X-YA', {
+attribution: "© <a href='https://www.mapbox.com/about/maps/'>Mapbox</a> © <a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a> <strong><a href='https://www.mapbox.com/map-feedback/' target='_blank'>Improve this map</a></strong>"
+})
+
+
 
 /*
 async function getWFSgeojson(){
@@ -663,3 +671,19 @@ $(document).ready(function(){
     zmiana_pokrycia_00_10.setOpacity(this.value / 100);
 	})
 });
+
+
+var magnifiedTiles2 = L.tileLayer.wms(wms_service, {
+  layers: 'wycinki',
+  format: 'image/png',
+  zIndex: 10,
+  transparent: true,
+  opacity: 1,
+  cql_filter:sql_text
+});
+
+var magnifyingGlass = L.magnifyingGlass({
+  layers: [magnifiedTiles2, magnifiedTiles],
+  zoomOffset: 2,
+  radius: 140
+  }).addTo(map);
