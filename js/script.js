@@ -168,7 +168,7 @@ onEachFeature: function (feature, layer){
 
 
 
-var wichura_2017_layer = L.geoJson("https://raw.githubusercontent.com/Adrian-Nowacki/analiza-bory-tucholskie/main/poligony/geojson/wichura_2017.geojson", {color: 'black', fillColor: '#FF0000', fillOpacity: 0.3, weight: 1, pane: 'warstwy'});
+var wichura_2017_layer = L.geoJson.AJAX("https://raw.githubusercontent.com/Adrian-Nowacki/analiza-bory-tucholskie/main/poligony/geojson/wichura_2017.geojson", {color: 'black', fillColor: '#FF0000', fillOpacity: 0.3, weight: 1, pane: 'warstwy'});
 wichura_2017_layer.addTo(map);
 /*
 getWFSgeojson().then(data=> {
