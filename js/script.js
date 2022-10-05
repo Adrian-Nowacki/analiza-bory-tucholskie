@@ -59,12 +59,22 @@ function getColor_nadlesnictwa_procent_straty(DN) {
          DN > 30  ? '#246d70' :
          DN > 25  ? '#358679' :
          DN > 20  ? '#4da183' :
-         DN > 15   ? '#6cbc90' :
-         DN > 10   ? '#95d2a4' :
+         DN > 15  ? '#6cbc90' :
+         DN > 10  ? '#95d2a4' :
          DN > 5   ? '#b9e4c4' :
                     '#c4e6c3';
 };
 
+function getColor_nadlesnictwa_procent_przyrostu(DN) {
+  return DN > 4.5  ? '#1c4f60' :
+         DN > 4    ? '#246d70' :
+         DN > 3.5  ? '#358679' :
+         DN > 3    ? '#4da183' :
+         DN > 2.5  ? '#6cbc90' :
+         DN > 2    ? '#95d2a4' :
+         DN > 1.5  ? '#b9e4c4' :
+                    '#c4e6c3';
+};
 
 function getColor_pokrycie_00(DN) {
     return DN > 80   ? '#0c5246' :
@@ -119,6 +129,17 @@ function style(feature) {
 function style_stats_strata(feature) {
   return {
       fillColor: getColor_nadlesnictwa_procent_straty(feature.properties.p_loss),
+      weight: 1.5,
+      opacity: 0.7,
+      color: '#222',
+      dashArray: '4',
+      fillOpacity: 0.7
+  };
+}
+
+function style_stats_przyrost(feature) {
+  return {
+      fillColor: getColor_nadlesnictwa_procent_przyrostu(feature.properties.p_gain),
       weight: 1.5,
       opacity: 0.7,
       color: '#222',
@@ -563,7 +584,7 @@ var legend_nadlesnictwa = L.control({position: 'bottomright'});
 var legend_pokrycie_00 = L.control({position: 'bottomright'});
 var legend_zmiana_pokrycia = L.control({position: 'bottomright'});
 var legend_nadlesnictwa_strata = L.control({position: 'bottomright'});
-
+var legend_nadlesnictwa_przyrost = L.control({position: 'bottomright'});
 
 legend_nadlesnictwa.onAdd = function (map) {
     var div = L.DomUtil.create('div', 'info legend');
@@ -645,6 +666,24 @@ legend_nadlesnictwa_strata.onAdd = function (map) {
 };
 
 
+legend_nadlesnictwa_przyrost.onAdd = function (map) {
+  var div = L.DomUtil.create('div', 'info legend');
+  var grades = [1.5, 2, 2.5, 3, 3.5, 4, 4.5];
+  var labels = [];
+  var from, to;
+
+  for (var i = 0; i < grades.length; i++) {
+      from = grades[i];
+      to = grades[i + 1];
+
+      labels.push(
+          '<i id = "clr_zmiana_pokrycia_' + i + '" style="background:' + getColor_nadlesnictwa_procent_przyrostu(from + 0.5) + '"></i> ' +
+          from + (to ? ' &ndash; ' + to : '+'));
+          labels.id = 'aaa'
+  }
+  div.innerHTML = labels.join('<br>');
+  return div;
+};
 
 map.zoomControl.setPosition('topright');
 
@@ -772,4 +811,13 @@ document.getElementById("strata_stats").addEventListener("click", function () {
   geojsonLayer.setStyle(style_stats_strata);
   legend_nadlesnictwa_strata.addTo(map);
   map.removeControl(legend_nadlesnictwa);
+  map.removeControl(legend_nadlesnictwa_przyrost);
 });
+
+document.getElementById("przyrost_stats").addEventListener("click", function () {
+  geojsonLayer.setStyle(style_stats_przyrost);
+  legend_nadlesnictwa_przyrost.addTo(map);
+  map.removeControl(legend_nadlesnictwa);
+  map.removeControl(legend_nadlesnictwa_strata);
+});
+legend_nadlesnictwa_przyrost
