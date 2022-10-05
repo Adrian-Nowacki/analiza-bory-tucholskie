@@ -42,17 +42,29 @@ async function getWFSgeojson(){
 
 }
 */
-var geojsonLayer = new L.GeoJSON();
 
+/* style dla warstw nadleśnictw, w zależności od wybranej zmiennej */
 function getColor_nadlesnictwa(DN) {
-    return DN > 7000  ? '#1c4f60' :
-           DN > 5000  ? '#246d70' :
-           DN > 2000  ? '#358679' :
-           DN > 1000  ? '#4da183' :
-           DN > 500   ? '#6cbc90' :
-           DN > 100   ? '#95d2a4' :
+    return DN > 7500  ? '#1c4f60' :
+           DN > 6000  ? '#246d70' :
+           DN > 4500  ? '#358679' :
+           DN > 3000  ? '#4da183' :
+           DN > 1500   ? '#6cbc90' :
+           DN > 500   ? '#95d2a4' :
                       '#c4e6c3';
 };
+
+function getColor_nadlesnictwa_procent_straty(DN) {
+  return DN > 60  ? '#1c4f60' :
+         DN > 30  ? '#246d70' :
+         DN > 25  ? '#358679' :
+         DN > 20  ? '#4da183' :
+         DN > 15   ? '#6cbc90' :
+         DN > 10   ? '#95d2a4' :
+         DN > 5   ? '#b9e4c4' :
+                    '#c4e6c3';
+};
+
 
 function getColor_pokrycie_00(DN) {
     return DN > 80   ? '#0c5246' :
@@ -102,6 +114,17 @@ function style(feature) {
         dashArray: '4',
         fillOpacity: 0.7
     };
+}
+
+function style_stats_strata(feature) {
+  return {
+      fillColor: getColor_nadlesnictwa_procent_straty(feature.properties.p_loss),
+      weight: 1.5,
+      opacity: 0.7,
+      color: '#222',
+      dashArray: '4',
+      fillOpacity: 0.7
+  };
 }
 
 function resetHighlight(e) {
@@ -539,11 +562,12 @@ position: "bottomright"}).addTo(map);
 var legend_nadlesnictwa = L.control({position: 'bottomright'});
 var legend_pokrycie_00 = L.control({position: 'bottomright'});
 var legend_zmiana_pokrycia = L.control({position: 'bottomright'});
+var legend_nadlesnictwa_strata = L.control({position: 'bottomright'});
+
 
 legend_nadlesnictwa.onAdd = function (map) {
-
     var div = L.DomUtil.create('div', 'info legend');
-    var grades = [100, 500, 1000, 2000, 5000, 7000];
+    var grades = [500, 1500, 3000, 4500, 6000, 7500];
     var labels = [];
     var from, to;
 
@@ -555,13 +579,13 @@ legend_nadlesnictwa.onAdd = function (map) {
             '<i style="background:' + getColor_nadlesnictwa(from + 1) + '"></i> ' +
             from + (to ? ' &ndash; ' + to : '+'));
     }
-
     div.innerHTML = labels.join('<br>');
     return div;
 };
 
-legend_pokrycie_00.onAdd = function (map) {
 
+
+legend_pokrycie_00.onAdd = function (map) {
     var div = L.DomUtil.create('div', 'info legend');
     var grades = [0, 20, 40, 60, 80];
     var labels = [];
@@ -575,13 +599,13 @@ legend_pokrycie_00.onAdd = function (map) {
             '<i style="background:' + getColor_pokrycie_00(from + 1) + '"></i> ' +
             from + (to ? ' &ndash; ' + to : '+'));
     }
-
     div.innerHTML = labels.join('<br>');
     return div;
 };
 
-legend_zmiana_pokrycia.onAdd = function (map) {
 
+
+legend_zmiana_pokrycia.onAdd = function (map) {
     var div = L.DomUtil.create('div', 'info legend');
     var grades = [-100, -75, -50, -25, 0, 25, 50, 75];
     var labels = [];
@@ -596,9 +620,28 @@ legend_zmiana_pokrycia.onAdd = function (map) {
             from + (to ? ' &ndash; ' + to : '+'));
             labels.id = 'aaa'
     }
-
     div.innerHTML = labels.join('<br>');
     return div;
+};
+
+
+legend_nadlesnictwa_strata.onAdd = function (map) {
+  var div = L.DomUtil.create('div', 'info legend');
+  var grades = [5, 10, 15, 20, 25, 30, 60];
+  var labels = [];
+  var from, to;
+
+  for (var i = 0; i < grades.length; i++) {
+      from = grades[i];
+      to = grades[i + 1];
+
+      labels.push(
+          '<i id = "clr_zmiana_pokrycia_' + i + '" style="background:' + getColor_nadlesnictwa_procent_straty(from + 1) + '"></i> ' +
+          from + (to ? ' &ndash; ' + to : '+'));
+          labels.id = 'aaa'
+  }
+  div.innerHTML = labels.join('<br>');
+  return div;
 };
 
 
@@ -673,7 +716,9 @@ $(document).ready(function(){
 });
 
 
-var magnifiedTiles2 = L.tileLayer.wms(wms_service, {
+
+/* warstwy do wyświetlania w lupie*/
+var lupa_1= L.tileLayer.wms(wms_service, {
   layers: 'wycinki',
   format: 'image/png',
   zIndex: 10,
@@ -682,8 +727,49 @@ var magnifiedTiles2 = L.tileLayer.wms(wms_service, {
   cql_filter:sql_text
 });
 
+
+var lupa_2= L.tileLayer.wms(wms_service, {
+  layers: 'przyrost_drzew',
+  format: 'image/png',
+  zIndex: 4,
+  transparent: true,
+  opacity: 1
+  
+});
+
+var lupa_3 = L.tileLayer.wms(wms_service, {
+  layers: 'pokrycie_drzew_2000',
+  format: 'image/png',
+  zIndex: 4,
+  transparent: true,
+  opacity: 1
+});
+
+var lupa_4= L.tileLayer.wms(wms_service, {
+  layers: 'pokrycie_drzew_2010',
+  format: 'image/png',
+  zIndex: 4,
+  transparent: true,
+  opacity: 1
+});   
+
+var lupa_5 = L.tileLayer.wms(wms_service, {
+  layers: 'zmiana_pokrycia_00_10',
+  format: 'image/png',
+  zIndex: 4,
+  transparent: true,
+  opacity: 1
+});   
+
 var magnifyingGlass = L.magnifyingGlass({
-  layers: [magnifiedTiles2, magnifiedTiles],
+  layers: [ lupa_2, lupa_3, lupa_4, lupa_5, magnifiedTiles],
   zoomOffset: 2,
   radius: 140
-  }).addTo(map);
+  });
+
+
+document.getElementById("strata_stats").addEventListener("click", function () {
+  geojsonLayer.setStyle(style_stats_strata);
+  legend_nadlesnictwa_strata.addTo(map);
+  map.removeControl(legend_nadlesnictwa);
+});
