@@ -795,6 +795,7 @@ document.getElementById("mapa_bazowa_3").addEventListener("click", function(){
 document.getElementById("guzik_1").addEventListener("click", function(){
 	pokrycie_drzew_2000.addTo(map);
     legend_pokrycie_00.addTo(map);
+    magnifyingGlass.addTo(map);
     map.removeLayer(pokrycie_drzew_2010);
     map.removeLayer(zmiana_pokrycia_00_10);
     map.removeControl(legend_zmiana_pokrycia);
@@ -803,6 +804,7 @@ document.getElementById("guzik_1").addEventListener("click", function(){
 document.getElementById("guzik_2").addEventListener("click", function(){
 	pokrycie_drzew_2010.addTo(map);
     legend_pokrycie_00.addTo(map);
+    magnifyingGlass.addTo(map);
     map.removeLayer(pokrycie_drzew_2000);
     map.removeLayer(zmiana_pokrycia_00_10);
     map.removeControl(legend_zmiana_pokrycia);
@@ -811,6 +813,7 @@ document.getElementById("guzik_2").addEventListener("click", function(){
 document.getElementById("guzik_3").addEventListener("click", function(){
 	zmiana_pokrycia_00_10.addTo(map);
     legend_zmiana_pokrycia.addTo(map);
+    magnifyingGlass.addTo(map);
     map.removeLayer(pokrycie_drzew_2010);
     map.removeLayer(pokrycie_drzew_2000);
     map.removeControl(legend_pokrycie_00);
@@ -844,7 +847,16 @@ $(document).ready(function(){
 
 /* warstwy do wyświetlania w lupie*/
 var lupa_1= L.tileLayer.wms(wms_service, {
-  layers: 'wycinki',
+  layers: 'zmiana_pokrycia_00_10',
+  format: 'image/png',
+  zIndex: 10,
+  transparent: true,
+  opacity: 1,
+  cql_filter:sql_text
+});
+
+var lupa_2= L.tileLayer.wms(wms_service, {
+  layers: 'pokrycie_drzew_2010',
   format: 'image/png',
   zIndex: 10,
   transparent: true,
@@ -853,43 +865,11 @@ var lupa_1= L.tileLayer.wms(wms_service, {
 });
 
 
-var lupa_2= L.tileLayer.wms(wms_service, {
-  layers: 'przyrost_drzew',
-  format: 'image/png',
-  zIndex: 4,
-  transparent: true,
-  opacity: 1
-  
-});
-
-var lupa_3 = L.tileLayer.wms(wms_service, {
-  layers: 'pokrycie_drzew_2000',
-  format: 'image/png',
-  zIndex: 4,
-  transparent: true,
-  opacity: 1
-});
-
-var lupa_4= L.tileLayer.wms(wms_service, {
-  layers: 'pokrycie_drzew_2010',
-  format: 'image/png',
-  zIndex: 4,
-  transparent: true,
-  opacity: 1
-});   
-
-var lupa_5 = L.tileLayer.wms(wms_service, {
-  layers: 'zmiana_pokrycia_00_10',
-  format: 'image/png',
-  zIndex: 4,
-  transparent: true,
-  opacity: 1
-});   
 
 var magnifyingGlass = L.magnifyingGlass({
-  layers: [ lupa_2, lupa_3, lupa_4, lupa_5, magnifiedTiles],
+  layers: [lupa_1, lupa_2,  magnifiedTiles],
   zoomOffset: 2,
-  radius: 140
+  radius: 90
   });
 
 
