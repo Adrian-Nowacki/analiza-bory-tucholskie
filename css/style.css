@@ -451,6 +451,11 @@ table td#komorka {
 table td#komorka2 {
 	padding-left:10px;
 }
+table tr:hover{
+background-color:#719d57;
+color:#fff;
+cursor:pointer;
+}
 
 caption {
 font-size:16px;

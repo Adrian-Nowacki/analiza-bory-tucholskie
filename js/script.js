@@ -44,7 +44,7 @@ async function getWFSgeojson(){
 */
 
 /* style dla warstw nadleśnictw, w zależności od wybranej zmiennej */
-function getColor_nadlesnictwa(DN) {
+function getColor_nadlesnictwa_pow_wycinek(DN) {
     return DN > 7500  ? '#1c4f60' :
            DN > 6000  ? '#246d70' :
            DN > 4500  ? '#358679' :
@@ -75,6 +75,29 @@ function getColor_nadlesnictwa_procent_przyrostu(DN) {
          DN > 1.5  ? '#b9e4c4' :
                     '#c4e6c3';
 };
+
+function getColor_nadlesnictwa_powierzchnia(DN) {
+  return DN > 400  ? '#1c4f60' :
+         DN > 250  ? '#246d70' :
+         DN > 200  ? '#358679' :
+         DN > 150  ? '#4da183' :
+         DN > 100  ? '#6cbc90' :
+         DN > 50   ? '#95d2a4' :
+         DN > 0    ? '#b9e4c4' :
+                    '#c4e6c3';
+};
+
+function getColor_nadlesnictwa_proc_przykrycia_2000(DN) {
+  return DN > 75  ? '#1c4f60' :
+         DN > 70  ? '#246d70' :
+         DN > 65  ? '#358679' :
+         DN > 60  ? '#4da183' :
+         DN > 55  ? '#6cbc90' :
+         DN > 50   ? '#95d2a4' :
+         DN > 40    ? '#b9e4c4' :
+                    '#c4e6c3';
+};
+
 
 function getColor_pokrycie_00(DN) {
     return DN > 80   ? '#0c5246' :
@@ -115,9 +138,9 @@ function highlightFeature(e) {
 
 
 
-function style(feature) {
+function style_stats_pow_wycinek(feature) {
     return {
-        fillColor: getColor_nadlesnictwa(feature.properties.pow_wycinek_ha),
+        fillColor: getColor_nadlesnictwa_pow_wycinek(feature.properties.pow_wycinek_ha),
         weight: 1.5,
         opacity: 0.7,
         color: '#222',
@@ -140,6 +163,28 @@ function style_stats_strata(feature) {
 function style_stats_przyrost(feature) {
   return {
       fillColor: getColor_nadlesnictwa_procent_przyrostu(feature.properties.p_gain),
+      weight: 1.5,
+      opacity: 0.7,
+      color: '#222',
+      dashArray: '4',
+      fillOpacity: 0.7
+  };
+}
+
+function style_stats_powierzchnia(feature) {
+  return {
+      fillColor: getColor_nadlesnictwa_powierzchnia(feature.properties.area_km2),
+      weight: 1.5,
+      opacity: 0.7,
+      color: '#222',
+      dashArray: '4',
+      fillOpacity: 0.7
+  };
+}
+
+function style_stats_proc_przykrycia_2000(feature) {
+  return {
+      fillColor: getColor_nadlesnictwa_proc_przykrycia_2000(feature.properties.p_cover),
       weight: 1.5,
       opacity: 0.7,
       color: '#222',
@@ -171,7 +216,7 @@ function onEachFeature(feature, layer) {
 
 var geojsonLayer= new L.GeoJSON.AJAX("https://poznan-gis.pl/geoserver/deforestacja_bory_tucholskie/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=deforestacja_bory_tucholskie%3Anadlesnictwa&outputFormat=application/json",{onEachFeature:function forEachFeature (feature,layer){
 },
-style:style,
+style:style_stats_pow_wycinek,
 onEachFeature: function (feature, layer){
     console.log(feature);
     layer.bindPopup('<table id = "tabela_zespoly">\
@@ -383,7 +428,7 @@ document.getElementById("warstwa_dane").addEventListener("click", function () {
         map.removeLayer(pokrycie_drzew_2000);
         map.removeLayer(wichury);
 		    geojsonLayer.addTo(map);
-        legend_nadlesnictwa.addTo(map);
+        legend_nadlesnictwa_pow_wycinek.addTo(map);
         map.removeControl(legend_pokrycie_00);
         map.removeControl(legend_zmiana_pokrycia);
         $("#slider-container").css("display", "none");
@@ -397,7 +442,7 @@ document.getElementById("warstwa_dane").addEventListener("click", function () {
         if(!(map.hasLayer(zmiana_pokrycia_00_10))){
             $(".imageopacity").html('100%');
             $(".opacity-slider").val(100);
-            map.removeControl(legend_nadlesnictwa);
+            map.removeControl(legend_nadlesnictwa_pow_wycinek);
             map.removeLayer(geojsonLayer);
             map.removeLayer(wycinki); 
             map.removeLayer(przyrost_drzew);
@@ -414,7 +459,7 @@ document.getElementById("warstwa_wylesienie").addEventListener("click", function
         $(".imageopacity").html('100%');
         $(".opacity-slider").val(100);
         wycinki.setOpacity(100);
-        map.removeControl(legend_nadlesnictwa);
+        map.removeControl(legend_nadlesnictwa_pow_wycinek);
         map.removeControl(legend_pokrycie_00);
         map.removeControl(legend_zmiana_pokrycia);
         map.removeLayer(zmiana_pokrycia_00_10);
@@ -435,7 +480,7 @@ document.getElementById("warstwa_przyrost").addEventListener("click", function (
         $(".opacity-slider").val(100);
         przyrost_drzew.addTo(map);
         przyrost_drzew.setOpacity(100);
-        map.removeControl(legend_nadlesnictwa);
+        map.removeControl(legend_nadlesnictwa_pow_wycinek);
         map.removeControl(legend_pokrycie_00);
         map.removeControl(legend_zmiana_pokrycia);
         map.removeLayer(zmiana_pokrycia_00_10);
@@ -453,7 +498,7 @@ document.getElementById("warstwa_przyrost").addEventListener("click", function (
 
 document.getElementById("warstwa_tornado").addEventListener("click", function () {
 	if(!(map.hasLayer(wichury))){
-        map.removeControl(legend_nadlesnictwa);
+        map.removeControl(legend_nadlesnictwa_pow_wycinek);
         map.removeControl(legend_pokrycie_00);
         map.removeControl(legend_zmiana_pokrycia);
         map.removeLayer(zmiana_pokrycia_00_10);
@@ -580,13 +625,15 @@ position: "bottomright"}).addTo(map);
 
 /* legenda do warstw*/
 
-var legend_nadlesnictwa = L.control({position: 'bottomright'});
+var legend_nadlesnictwa_pow_wycinek = L.control({position: 'bottomright'});
 var legend_pokrycie_00 = L.control({position: 'bottomright'});
 var legend_zmiana_pokrycia = L.control({position: 'bottomright'});
 var legend_nadlesnictwa_strata = L.control({position: 'bottomright'});
 var legend_nadlesnictwa_przyrost = L.control({position: 'bottomright'});
+var legend_nadlesnictwa_powierzchnia = L.control({position: 'bottomright'});
+var legend_nadlesnictwa_proc_przykrycia_2000 = L.control({position: 'bottomright'});
 
-legend_nadlesnictwa.onAdd = function (map) {
+legend_nadlesnictwa_pow_wycinek.onAdd = function (map) {
     var div = L.DomUtil.create('div', 'info legend');
     var grades = [500, 1500, 3000, 4500, 6000, 7500];
     var labels = [];
@@ -597,7 +644,7 @@ legend_nadlesnictwa.onAdd = function (map) {
         to = grades[i + 1];
 
         labels.push(
-            '<i style="background:' + getColor_nadlesnictwa(from + 1) + '"></i> ' +
+            '<i style="background:' + getColor_nadlesnictwa_pow_wycinek(from + 1) + '"></i> ' +
             from + (to ? ' &ndash; ' + to : '+'));
     }
     div.innerHTML = labels.join('<br>');
@@ -678,6 +725,45 @@ legend_nadlesnictwa_przyrost.onAdd = function (map) {
 
       labels.push(
           '<i id = "clr_zmiana_pokrycia_' + i + '" style="background:' + getColor_nadlesnictwa_procent_przyrostu(from + 0.5) + '"></i> ' +
+          from + (to ? ' &ndash; ' + to : '+'));
+          labels.id = 'aaa'
+  }
+  div.innerHTML = labels.join('<br>');
+  return div;
+};
+
+
+legend_nadlesnictwa_powierzchnia.onAdd = function (map) {
+  var div = L.DomUtil.create('div', 'info legend');
+  var grades = [0, 50, 100, 150, 200, 250, 400];
+  var labels = [];
+  var from, to;
+
+  for (var i = 0; i < grades.length; i++) {
+      from = grades[i];
+      to = grades[i + 1];
+
+      labels.push(
+          '<i id = "clr_zmiana_pokrycia_' + i + '" style="background:' + getColor_nadlesnictwa_powierzchnia(from + 1) + '"></i> ' +
+          from + (to ? ' &ndash; ' + to : '+'));
+          labels.id = 'aaa'
+  }
+  div.innerHTML = labels.join('<br>');
+  return div;
+};
+
+legend_nadlesnictwa_proc_przykrycia_2000.onAdd = function (map) {
+  var div = L.DomUtil.create('div', 'info legend');
+  var grades = [40, 50, 55, 60, 65, 70, 75];
+  var labels = [];
+  var from, to;
+
+  for (var i = 0; i < grades.length; i++) {
+      from = grades[i];
+      to = grades[i + 1];
+
+      labels.push(
+          '<i id = "clr_zmiana_pokrycia_' + i + '" style="background:' + getColor_nadlesnictwa_proc_przykrycia_2000(from + 1) + '"></i> ' +
           from + (to ? ' &ndash; ' + to : '+'));
           labels.id = 'aaa'
   }
@@ -810,14 +896,36 @@ var magnifyingGlass = L.magnifyingGlass({
 document.getElementById("strata_stats").addEventListener("click", function () {
   geojsonLayer.setStyle(style_stats_strata);
   legend_nadlesnictwa_strata.addTo(map);
-  map.removeControl(legend_nadlesnictwa);
+  map.removeControl(legend_nadlesnictwa_pow_wycinek);
+  map.removeControl(legend_nadlesnictwa_powierzchnia);
   map.removeControl(legend_nadlesnictwa_przyrost);
+  map.removeControl(legend_nadlesnictwa_proc_przykrycia_2000);
 });
 
 document.getElementById("przyrost_stats").addEventListener("click", function () {
   geojsonLayer.setStyle(style_stats_przyrost);
   legend_nadlesnictwa_przyrost.addTo(map);
-  map.removeControl(legend_nadlesnictwa);
+  map.removeControl(legend_nadlesnictwa_pow_wycinek);
+  map.removeControl(legend_nadlesnictwa_strata);
+  map.removeControl(legend_nadlesnictwa_powierzchnia);
+  map.removeControl(legend_nadlesnictwa_proc_przykrycia_2000);
+});
+
+document.getElementById("powierzchnia_stats").addEventListener("click", function () {
+  geojsonLayer.setStyle(style_stats_powierzchnia);
+  legend_nadlesnictwa_powierzchnia.addTo(map);
+  map.removeControl(legend_nadlesnictwa_pow_wycinek);
+  map.removeControl(legend_nadlesnictwa_przyrost);
+  map.removeControl(legend_nadlesnictwa_strata);
+  map.removeControl(legend_nadlesnictwa_proc_przykrycia_2000);
+});
+
+
+document.getElementById("przykrycie_2000_stats").addEventListener("click", function () {
+  geojsonLayer.setStyle(style_stats_proc_przykrycia_2000);
+  legend_nadlesnictwa_proc_przykrycia_2000.addTo(map);
+  map.removeControl(legend_nadlesnictwa_pow_wycinek);
+  map.removeControl(legend_nadlesnictwa_powierzchnia);
+  map.removeControl(legend_nadlesnictwa_przyrost);
   map.removeControl(legend_nadlesnictwa_strata);
 });
-legend_nadlesnictwa_przyrost
