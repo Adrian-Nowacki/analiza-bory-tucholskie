@@ -427,6 +427,7 @@ document.getElementById("warstwa_dane").addEventListener("click", function () {
         map.removeLayer(pokrycie_drzew_2010);
         map.removeLayer(pokrycie_drzew_2000);
         map.removeLayer(wichury);
+        map.removeControl(magnifyingGlass);
 		    geojsonLayer.addTo(map);
         legend_nadlesnictwa_pow_wycinek.addTo(map);
         map.removeControl(legend_pokrycie_00);
@@ -447,6 +448,7 @@ document.getElementById("warstwa_dane").addEventListener("click", function () {
             map.removeLayer(wycinki); 
             map.removeLayer(przyrost_drzew);
             map.removeLayer(wichury);
+            map.removeControl(magnifyingGlass);
             $("#slider-container").css("display", "none");
             $(".ikona_tab").css("background-color", "#588c3a");
             $("#warstwa_pokrycie").css("background-color", "#ffffff");
@@ -468,6 +470,7 @@ document.getElementById("warstwa_wylesienie").addEventListener("click", function
         map.removeLayer(geojsonLayer);
         map.removeLayer(przyrost_drzew);
         map.removeLayer(wichury);
+        map.removeControl(magnifyingGlass);
 		    wycinki.addTo(map);
         $(".ikona_tab").css("background-color", "#588c3a");
          $("#warstwa_wylesienie").css("background-color", "#ffffff");
@@ -489,6 +492,7 @@ document.getElementById("warstwa_przyrost").addEventListener("click", function (
         map.removeLayer(wycinki); 
         map.removeLayer(geojsonLayer);
         map.removeLayer(wichury);
+        map.removeControl(magnifyingGlass);
         $("#slider-container").css("display", "none");
 		
         $(".ikona_tab").css("background-color", "#588c3a");
@@ -507,6 +511,7 @@ document.getElementById("warstwa_tornado").addEventListener("click", function ()
         map.removeLayer(geojsonLayer);
         map.removeLayer(przyrost_drzew);
         map.removeLayer(wycinki);
+        map.removeControl(magnifyingGlass);
 		    wichury.addTo(map);
         $("#slider-container").css("display", "none");
         $(".ikona_tab").css("background-color", "#588c3a");
