@@ -638,6 +638,7 @@ var legend_nadlesnictwa_przyrost = L.control({position: 'bottomright'});
 var legend_nadlesnictwa_powierzchnia = L.control({position: 'bottomright'});
 var legend_nadlesnictwa_proc_przykrycia_2000 = L.control({position: 'bottomright'});
 
+
 legend_nadlesnictwa_pow_wycinek.onAdd = function (map) {
     var div = L.DomUtil.create('div', 'info legend');
     var grades = [500, 1500, 3000, 4500, 6000, 7500];
@@ -879,6 +880,10 @@ var magnifyingGlass = L.magnifyingGlass({
 
 
 document.getElementById("strata_stats").addEventListener("click", function () {
+  $(".stats").css("border", "none");
+  $(".stats").css("border-left", "none");
+  document.getElementById("strata_stats").style.border = "0.5px solid #222222";
+  document.getElementById("strata_stats").style.borderLeft = "12px solid #588c3a";
   geojsonLayer.setStyle(style_stats_strata);
   legend_nadlesnictwa_strata.addTo(map);
   map.removeControl(legend_nadlesnictwa_pow_wycinek);
@@ -888,6 +893,10 @@ document.getElementById("strata_stats").addEventListener("click", function () {
 });
 
 document.getElementById("przyrost_stats").addEventListener("click", function () {
+  $(".stats").css("border", "none");
+  $(".stats").css("border-left", "none");
+  document.getElementById("przyrost_stats").style.border = "0.5px solid #222222";
+  document.getElementById("przyrost_stats").style.borderLeft = "12px solid #588c3a";
   geojsonLayer.setStyle(style_stats_przyrost);
   legend_nadlesnictwa_przyrost.addTo(map);
   map.removeControl(legend_nadlesnictwa_pow_wycinek);
@@ -897,6 +906,10 @@ document.getElementById("przyrost_stats").addEventListener("click", function () 
 });
 
 document.getElementById("powierzchnia_stats").addEventListener("click", function () {
+  $(".stats").css("border", "none");
+  $(".stats").css("border-left", "none");
+  document.getElementById("powierzchnia_stats").style.border = "0.5px solid #222222";
+  document.getElementById("powierzchnia_stats").style.borderLeft = "12px solid #588c3a";
   geojsonLayer.setStyle(style_stats_powierzchnia);
   legend_nadlesnictwa_powierzchnia.addTo(map);
   map.removeControl(legend_nadlesnictwa_pow_wycinek);
@@ -907,10 +920,28 @@ document.getElementById("powierzchnia_stats").addEventListener("click", function
 
 
 document.getElementById("przykrycie_2000_stats").addEventListener("click", function () {
+  $(".stats").css("border", "none");
+  $(".stats").css("border-left", "none");
+  document.getElementById("przykrycie_2000_stats").style.border = "0.5px solid #222222";
+  document.getElementById("przykrycie_2000_stats").style.borderLeft = "12px solid #588c3a";
   geojsonLayer.setStyle(style_stats_proc_przykrycia_2000);
   legend_nadlesnictwa_proc_przykrycia_2000.addTo(map);
   map.removeControl(legend_nadlesnictwa_pow_wycinek);
   map.removeControl(legend_nadlesnictwa_powierzchnia);
   map.removeControl(legend_nadlesnictwa_przyrost);
   map.removeControl(legend_nadlesnictwa_strata);
+});
+
+document.getElementById("powierzchnia_strat_stats").addEventListener("click", function () {
+  $(".stats").css("border", "none");
+  $(".stats").css("border-left", "none");
+  document.getElementById("powierzchnia_strat_stats").style.border = "0.5px solid #222222";
+  document.getElementById("powierzchnia_strat_stats").style.borderLeft = "12px solid #588c3a";
+  
+  geojsonLayer.setStyle(style_stats_pow_wycinek);
+  legend_nadlesnictwa_pow_wycinek.addTo(map);
+  map.removeControl(legend_nadlesnictwa_powierzchnia);
+  map.removeControl(legend_nadlesnictwa_przyrost);
+  map.removeControl(legend_nadlesnictwa_strata);
+  map.removeControl(legend_nadlesnictwa_proc_przykrycia_2000);
 });
