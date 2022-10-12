@@ -443,6 +443,10 @@ sup{
 	color:white!important;
 	font-size:14px;
 }
+#tabela_zespoly tr{
+  background-color:transparent!important;
+  line-height:8px!important;
+}
 
 
 table td#komorka {
